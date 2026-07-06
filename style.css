@@ -489,26 +489,51 @@ THÍCH ỨNG DI ĐỘNG (RESPONSIVE)
     }
 
     /* --- Khu vực sản phẩm --- */
-    .products-wrapper {
-        padding: 0 15px;
+    /* --- Khu vực sản phẩm trên Mobile --- */
+    .slider-navigation {
+        display: none; /* Ẩn nút mũi tên vì đã chuyển sang dạng lưới, không cần trượt */
     }
 
-    .slider-navigation {
-        margin-top: 20px;
-        margin-bottom: -10px;
+    .products-section {
+        display: grid !important;      /* Chuyển từ Flex sang Grid */
+        grid-template-columns: repeat(4, 1fr); /* Chia đều thành 4 cột */
+        gap: 8px;                      /* Khoảng cách nhỏ giữa các ô để tránh tràn màn hình */
+        padding: 20px 10px !important; /* Định dạng lại khoảng cách viền ngoài */
+        overflow-x: hidden;            /* Tắt hoàn toàn chế độ cuộn ngang */
     }
 
     .product {
-        flex: 0 0 250px; /* Thu nhỏ bề ngang khối sản phẩm */
-        padding: 20px;
+        flex: unset;                   /* QUAN TRỌNG: Hủy kích thước cố định 320px của desktop */
+        padding: 10px 5px;             /* Thu nhỏ khoảng cách bên trong hộp sản phẩm */
+        border-radius: 10px;           /* Bo góc nhẹ lại cho hợp với kích thước nhỏ */
     }
 
     .product-image {
-        height: 180px; /* Thu nhỏ ảnh điện thoại */
+        height: 90px;                  /* Thu nhỏ ảnh điện thoại để vừa vặn với cột hẹp */
+        margin-bottom: 10px;
     }
 
     .product h3 {
-        font-size: 20px;
+        font-size: 11px;               /* Giảm kích thước chữ tiêu đề */
+        margin-bottom: 10px;
+    }
+
+    .product .price {
+        font-size: 10px;               /* Giảm kích thước chữ hiển thị giá */
+        margin-bottom: 4px;
+    }
+
+    .product-actions {
+        flex-direction: column;        /* Chuyển 2 nút hành động thành hàng dọc vì chiều ngang quá hẹp */
+        gap: 4px;
+        margin-top: 5px;
+    }
+
+    .btn-learn-more, .btn-buy {
+        padding: 4px 0;                /* Thu nhỏ độ dày nút */
+        font-size: 9px;                /* Giảm cỡ chữ nút bấm */
+        width: 100%;                   /* Cho nút trải dài vừa vặn với ô chứa */
+        text-align: center;
     }
 
     /* --- Khu vực Bộ sưu tập --- */

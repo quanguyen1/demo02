@@ -57,14 +57,14 @@ nav a::after {
 }
 
 /* Trạng thái khi DI CHUỘT VÀO (HOVER) */
-nav a:hover {
-    color: #f5f0eb;            /* Chữ sáng rực lên màu trắng */
+/* nav a:hover {
+    color: #f5f0eb;
 }
 
 nav a:hover::after {
-    transform: scaleX(1);      /* Đường gạch chân trải dài ra full 100% chiều rộng chữ */
-    transform-origin: center;    /* Chạy từ trái sang phải */
-}
+    transform: scaleX(1);      
+    transform-origin: center;  
+} */
 
 .header-actions {
     display: flex;
@@ -108,15 +108,15 @@ nav a:hover::after {
 }
 
 /* Hiệu ứng phản hồi nhẹ khi di chuột qua icon */
-.icon-btn:hover {
-    background-color: #c3c2c2; /* Nền sáng lên một chút khi hover */
-    transform: scale(1.05);    /* Phóng to nhẹ nút */
+/* .icon-btn:hover {
+    background-color: #c3c2c2; 
+    transform: scale(1.05);
 }
 
 .contact-btn:hover {
     background: #f5f0eb;
     color: #37312d;
-}
+} */
 
 /* --- KHU VỰC SẢN PHẨM --- */
 .products-section {
@@ -233,9 +233,9 @@ nav a:hover::after {
 }
 
 /* Hiệu ứng khi di chuột vào nút "Tìm hiểu thêm" */
-.btn-learn-more:hover,.btn-buy:hover  {
-    background-color: #1b1815; /* Sáng màu đen lên một chút */
-}
+/* .btn-learn-more:hover,.btn-buy:hover  {
+    background-color: #1b1815;
+} */
 
 
 /* --- KHU VỰC BỘ SƯU TẬP --- */
@@ -311,12 +311,10 @@ nav a:hover::after {
 }
 
 /* Hiệu ứng khi di chuột qua mũi tên */
-.nav-arrow-btn:hover {
-    /* background-color: #f5f0eb;
-    color: #1a1a1a; */
-    background-color: #555555; /* Sáng lên một chút khi di chuột vào */
+/* .nav-arrow-btn:hover {
+    background-color: #555555;
     transform: scale(1.05);
-}
+} */
 
 /* Tùy chỉnh lại padding của phần sản phẩm cho khớp với cấu trúc mới */
 .products-section {
@@ -380,8 +378,42 @@ nav a:hover::after {
     transform: translate(0, 0);
 }
 
+
+/* --- HIỆU ỨNG HOVER CHỈ DÀNH CHO THIẾT BỊ CÓ CHUỘT (PC/LAPTOP) --- */
+@media (hover: hover) {
+    /* Menu */
+    nav a:hover {
+        color: #f5f0eb;
+    }
+    nav a:hover::after {
+        transform: scaleX(1);
+        transform-origin: center;
+    }
+
+    /* Nút icon trên Header */
+    .icon-btn:hover {
+        background-color: #c3c2c2;
+        transform: scale(1.05);
+    }
+
+    /* Thẻ sản phẩm */
+    .product:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Nút Tìm hiểu thêm & Mua */
+    .btn-learn-more:hover, .btn-buy:hover {
+        background-color: #1b1815;
+    }
+
+    /* Nút mũi tên trượt */
+    .nav-arrow-btn:hover {
+        background-color: #555555;
+        transform: scale(1.05);
+    }
+}
 /* =========================================
-   THÍCH ỨNG DI ĐỘNG (RESPONSIVE)
+THÍCH ỨNG DI ĐỘNG (RESPONSIVE)
    ========================================= */
 
 /* --- Máy tính bảng (Tablet - Dưới 992px) --- */
@@ -414,6 +446,8 @@ nav a:hover::after {
     }
 }
 
+
+
 /* --- Điện thoại (Mobile - Dưới 768px) --- */
 @media (max-width: 768px) {
     header {
@@ -424,6 +458,10 @@ nav a:hover::after {
     .logo {
         font-size: 24px;
     }
+
+    .slider-navigation {
+    display: none; /* Ẩn nút mũi tên vì người dùng đã có thể vuốt */
+}
 
     /* Đẩy menu xuống dòng và tạo thanh trượt ngang trên mobile */
     nav {

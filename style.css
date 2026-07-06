@@ -205,26 +205,38 @@ nav a:hover::after {
 }
 
 .product h3 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
-.add-to-cart {
-    background: rgba(255,255,255,0.1);
-    color: #f5f0eb;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-size: 12px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: 0.3s;
+/* --- KHU VỰC 2 NÚT HÀNH ĐỘNG MỚI --- */
+/* Khung chứa để sắp xếp 2 nút nằm ngang và căn giữa */
+.product-actions {
+    display: flex;
+    justify-content: center; /* Căn giữa 2 nút */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    gap: 20px;               /* Khoảng cách giữa nút xanh và chữ Mua */
+    margin-top: 15px;
 }
 
-.add-to-cart:hover {
-    background: rgba(255,255,255,0.3);
+/* Kiểu dáng cho nút "Tìm hiểu thêm" (Nền nâu viên thuốc) */
+.btn-learn-more, .btn-buy {
+    background-color: #37312d; /* Màu trùng vs nền đặc trưng của Apple */
+    border: 1px solid #473d36;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 22px;         /* Khoảng cách chữ tới viền (Trên/dưới 8px, Trái/phải 22px) */
+    border-radius: 30px;       /* Bo góc tròn trịa */
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
+
+/* Hiệu ứng khi di chuột vào nút "Tìm hiểu thêm" */
+.btn-learn-more:hover,.btn-buy:hover  {
+    background-color: #1b1815; /* Sáng màu đen lên một chút */
+}
+
 
 /* --- KHU VỰC BỘ SƯU TẬP --- */
 .collection-section {
@@ -243,21 +255,31 @@ nav a:hover::after {
     position: relative;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 50px;
+    padding: 0 60px;
 }
 
 /* Căn lề cho khối chứa nút bấm nằm về bên phải */
 .slider-navigation {
-    display: flex;
+    /* display: flex;
     justify-content:flex-end;
     gap: 12px;
     margin-top: 40px;
-    margin-bottom: -20px; /* Kéo sát lại gần với phần sản phẩm */
+    margin-bottom: -20px; */
+    position: absolute;
+    top: 40%; /* Đẩy xuống giữa khối sản phẩm */
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%); /* Dịch lên một chút để căn giữa hoàn hảo */
+    display: flex;
+    justify-content: space-between; /* Đẩy 2 nút ra sát 2 mép (trái/phải) */
+    padding: 0 10px; /* Điều chỉnh khoảng cách của nút so với mép ngoài cùng */
+    z-index: 10; /* Đảm bảo nút luôn nổi lên trên cùng */
+    pointer-events: none; /* Xuyên qua thẻ div này để người dùng vẫn click/vuốt được sản phẩm ở giữa */
 }
 
 /* Định dạng kiểu dáng hình tròn cho nút mũi tên */
 .nav-arrow-btn {
-    background-color: rgba(255, 255, 255, 0.05);
+    /* background-color: rgba(255, 255, 255, 0.05);
     color: #f5f0eb;
     border: 1px solid rgba(245, 240, 235, 0.1);
     width: 45px;
@@ -267,7 +289,20 @@ nav a:hover::after {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all 0.3s ease; */
+    pointer-events: auto; /* Kích hoạt lại khả năng click cho riêng cái nút */
+    background-color: #37312d; /* Màu nền xám tối giống ảnh */
+    color: #f5f0eb;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Thêm bóng đổ nhẹ để nút tách biệt với nền */
 }
 
 .nav-arrow-btn svg {
@@ -277,8 +312,10 @@ nav a:hover::after {
 
 /* Hiệu ứng khi di chuột qua mũi tên */
 .nav-arrow-btn:hover {
-    background-color: #f5f0eb;
-    color: #1a1a1a;
+    /* background-color: #f5f0eb;
+    color: #1a1a1a; */
+    background-color: #555555; /* Sáng lên một chút khi di chuột vào */
+    transform: scale(1.05);
 }
 
 /* Tùy chỉnh lại padding của phần sản phẩm cho khớp với cấu trúc mới */
@@ -289,7 +326,7 @@ nav a:hover::after {
 /* Cấu hình cho ảnh bộ sưu tập lớn */
 .large-collection-image {
     width: 100%;
-    height: 600px;
+    height: auto;
     object-fit: cover; /* Giúp ảnh không bị méo khi kéo giãn */
     border-radius: 10px;
     display: block;
@@ -316,7 +353,7 @@ nav a:hover::after {
 }
 
 .big-title {
-    font-size: 80px;
+    font-size: 25px;
     font-weight: 300;
     letter-spacing: 2px;
 }

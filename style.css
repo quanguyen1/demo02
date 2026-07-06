@@ -30,12 +30,40 @@ header {
     font-style: italic;
 }
 
+/* --- HIỆU ỨNG CHO THANH NAV --- */
 nav a {
-    color: #f5f0eb;
+    color: #b5aba2;            /* Đổi màu chữ mặc định mờ hơn một chút để khi hover sẽ nổi bật */
     text-decoration: none;
     margin: 0 20px;
     font-size: 13px;
     letter-spacing: 1px;
+    position: relative;        /* Bắt buộc phải có để định vị đường gạch chân */
+    padding: 6px 0;
+    transition: color 0.3s ease; /* Hiệu ứng đổi màu chữ mượt mà */
+}
+
+/* Tạo đường gạch chân ẩn bằng pseudo-element (::after) */
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;             /* Độ dày của nét gạch chân */
+    background-color: #f5f0eb; /* Màu của đường gạch chân (trùng màu chữ khi sáng) */
+    transform: scaleX(0);      /* Ban đầu thu nhỏ về kích thước bằng 0 (ẩn đi) */
+    transform-origin: right;   /* Hướng thu nhỏ về bên phải */
+    transition: transform 0.3s ease-in-out; /* Hiệu ứng chuyển động mượt */
+}
+
+/* Trạng thái khi DI CHUỘT VÀO (HOVER) */
+nav a:hover {
+    color: #f5f0eb;            /* Chữ sáng rực lên màu trắng */
+}
+
+nav a:hover::after {
+    transform: scaleX(1);      /* Đường gạch chân trải dài ra full 100% chiều rộng chữ */
+    transform-origin: center;    /* Chạy từ trái sang phải */
 }
 
 .header-actions {
@@ -43,7 +71,7 @@ nav a {
     gap: 15px;
 }
 
-.cart-btn, .contact-btn {
+/* .cart-btn, .search-btn {
     background: transparent;
     color: #f5f0eb;
     border: 1px solid rgba(245, 240, 235, 0.3);
@@ -51,6 +79,38 @@ nav a {
     border-radius: 30px;
     cursor: pointer;
     transition: 0.3s;
+} */
+/* --- KIỂU DÁNG CHO 2 NÚT ICON MỚI --- */
+.header-actions {
+    display: flex;
+    gap: 15px; /* Khoảng cách giữa 2 nút icon */
+    align-items: center;
+}
+
+.icon-btn {
+    background-color: #37312d; /* Màu nền xám tối hình tròn giống trong ảnh */
+    color: #f5f0eb;           /* Màu trắng tối giản cho đường nét icon */
+    border: none;
+    width: 45px;              /* Chiều rộng nút */
+    height: 45px;             /* Chiều cao nút bằng chiều rộng để tạo hình vuông */
+    border-radius: 50%;       /* Biến khung vuông thành hình tròn hoàn hảo */
+    display: flex;
+    justify-content: center;  /* Căn giữa icon theo chiều ngang */
+    align-items: center;      /* Căn giữa icon theo chiều dọc */
+    cursor: pointer;          /* Đổi con trỏ chuột thành hình bàn tay */
+    transition: all 0.3s ease;
+}
+
+/* Kích thước của hình vẽ SVG bên trong nút */
+.icon-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Hiệu ứng phản hồi nhẹ khi di chuột qua icon */
+.icon-btn:hover {
+    background-color: #c3c2c2; /* Nền sáng lên một chút khi hover */
+    transform: scale(1.05);    /* Phóng to nhẹ nút */
 }
 
 .contact-btn:hover {
@@ -60,24 +120,82 @@ nav a {
 
 /* --- KHU VỰC SẢN PHẨM --- */
 .products-section {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     gap: 60px;
-    padding: 80px 50px;
+    padding: 80px 50px; */
+    display: flex;                /* Chuyển từ Grid sang Flex để xếp các sản phẩm thành một hàng ngang dài */
+    gap: 30px;                    /* Khoảng cách giữa các khối sản phẩm */
+    padding: 60px 50px 80px 50px; /* Thêm padding dưới để tạo khoảng cách với thanh trượt */
+    max-width: 100%;              /* Cho phép chiếm toàn bộ chiều ngang màn hình */
+    
+    /* Kích hoạt tính năng trượt ngang */
+    overflow-x: auto;             /* Tự động xuất hiện thanh trượt khi sản phẩm tràn màn hình */
+    overflow-y: hidden;           /* Ẩn hoàn toàn việc cuộn theo chiều dọc */
+    scroll-behavior: smooth;      /* Giúp hiệu ứng cuộn mượt mà hơn */
+    
+    /* Thuộc tính giúp việc vuốt chạm trên điện thoại mượt như ứng dụng gốc */
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; /* Giúp các sản phẩm tự động "khớp" vào giữa màn hình khi dừng cuộn */
 }
 
+/* Định dạng cho từng khối sản phẩm bên trong thanh trượt */
 .product {
     text-align: center;
-    flex: 1;
-    max-width: 300px;
+    background: #37312d;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #473d36;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    /* Định hình kích thước cố định cho sản phẩm khi nằm trong hàng ngang */
+    flex: 0 0 320px;              /* Không cho sản phẩm bị co lại, luôn giữ độ rộng cố định là 320px */
+    scroll-snap-align: start;     /* Điểm neo để sản phẩm khớp vào cạnh khi cuộn */
 }
 
-.img-placeholder {
-    width: 100%;
-    height: 400px;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Tạo dáng mô phỏng bình gốm */
-    margin-bottom: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+/* --- TÙY CHỈNH THANH TRƯỢT (SCROLLBAR) DƯỚI SẢN PHẨM GIỐNG ẢNH --- */
+
+/* 1. Kích thước tổng thể của thanh trượt */
+.products-section::-webkit-scrollbar {
+    height: 4px;                  /* Chiều cao cực mảnh và tinh tế cho thanh trượt ngang */
+}
+
+/* 2. Phần nền bên dưới của thanh trượt */
+.products-section::-webkit-scrollbar-track {
+    background: rgb(86, 81, 81); /* Màu nền xám mờ nhẹ */
+    border-radius: 10px;
+    margin: 0 100px;              /* Thu hẹp hai đầu thanh trượt lại cho đẹp, không bị tràn ra mép màn hình */
+}
+
+/* 3. Phần cục chạy (con trượt) để người dùng kéo */
+.products-section::-webkit-scrollbar-thumb {
+    background: #75685e;          /* Màu trắng sáng trùng màu chữ để làm nổi bật cục kéo giống trong ảnh */
+    border-radius: 10px;          /* Bo tròn hai đầu cục kéo */
+    cursor: pointer;
+}
+
+/* Đổi màu cục kéo sáng hơn nữa hoặc thay đổi khi di chuột vào (tùy chọn) */
+.products-section::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+
+/* Hiệu ứng nhẹ khi di chuột vào thẻ (Tùy chọn) */
+.product:hover {
+    transform: translateY(-5px);
+}
+
+/* --- CẤU HÌNH LẠI ẢNH SẢN PHẨM --- */
+.product-image {
+    width: 85%;                /* Thu nhỏ ảnh lại một chút để tạo khoảng thở với viền */
+    height: 250px;             /* Giới hạn chiều cao vừa vặn cho các dòng điện thoại */
+    
+    object-fit: contain;       /* ĐIỀU CỐT LÕI: Giữ nguyên tỉ lệ gốc của điện thoại, 
+                                  không làm méo, không làm mất chi tiết viền */
+    margin-bottom: 25px;       /* Khoảng cách dưới ảnh */
+    display: block;
+    
+    /* Đã xóa bỏ hoàn toàn dáng bình gốm cũ và đổ bóng gắt */
 }
 
 .product .price {
@@ -120,10 +238,61 @@ nav a {
     flex: 1;
 }
 
-.collection-image .large {
+/* --- ĐỊNH DẠNG KHU VỰC NÚT BẤM MŨI TÊN --- */
+.products-wrapper {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+/* Căn lề cho khối chứa nút bấm nằm về bên phải */
+.slider-navigation {
+    display: flex;
+    justify-content:flex-end;
+    gap: 12px;
+    margin-top: 40px;
+    margin-bottom: -20px; /* Kéo sát lại gần với phần sản phẩm */
+}
+
+/* Định dạng kiểu dáng hình tròn cho nút mũi tên */
+.nav-arrow-btn {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #f5f0eb;
+    border: 1px solid rgba(245, 240, 235, 0.1);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-arrow-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Hiệu ứng khi di chuột qua mũi tên */
+.nav-arrow-btn:hover {
+    background-color: #f5f0eb;
+    color: #1a1a1a;
+}
+
+/* Tùy chỉnh lại padding của phần sản phẩm cho khớp với cấu trúc mới */
+.products-section {
+    padding: 40px 0 60px 0 !important; 
+}
+
+/* Cấu hình cho ảnh bộ sưu tập lớn */
+.large-collection-image {
+    width: 100%;
     height: 600px;
-    background-color: #201d1b;
+    object-fit: cover; /* Giúp ảnh không bị méo khi kéo giãn */
     border-radius: 10px;
+    display: block;
 }
 
 .collection-text {
@@ -172,4 +341,124 @@ nav a {
 .fade-in.show {
     opacity: 1;
     transform: translate(0, 0);
+}
+
+/* =========================================
+   THÍCH ỨNG DI ĐỘNG (RESPONSIVE)
+   ========================================= */
+
+/* --- Máy tính bảng (Tablet - Dưới 992px) --- */
+@media (max-width: 992px) {
+    header {
+        padding: 20px 30px;
+    }
+
+    /* Thu nhỏ khoảng cách chữ trên menu để không bị rớt dòng */
+    nav a {
+        margin: 0 10px;
+        font-size: 12px;
+    }
+
+    .products-wrapper {
+        padding: 0 30px;
+    }
+
+    .collection-section {
+        padding: 80px 30px;
+        gap: 30px;
+    }
+
+    .large-collection-image {
+        height: 450px;
+    }
+
+    .big-title {
+        font-size: 60px;
+    }
+}
+
+/* --- Điện thoại (Mobile - Dưới 768px) --- */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+        flex-wrap: wrap; /* Cho phép các thành phần bên trong rớt dòng */
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    /* Đẩy menu xuống dòng và tạo thanh trượt ngang trên mobile */
+    nav {
+        order: 3; /* Xếp sau logo (1) và nút icon (2) */
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch; /* Lướt mượt trên iOS */
+    }
+
+    /* Ẩn thanh cuộn xấu xí của menu trên mobile */
+    nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    nav a {
+        white-space: nowrap; /* Tránh cho chữ trong thẻ a bị rớt dòng */
+    }
+
+    .icon-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* --- Khu vực sản phẩm --- */
+    .products-wrapper {
+        padding: 0 15px;
+    }
+
+    .slider-navigation {
+        margin-top: 20px;
+        margin-bottom: -10px;
+    }
+
+    .product {
+        flex: 0 0 250px; /* Thu nhỏ bề ngang khối sản phẩm */
+        padding: 20px;
+    }
+
+    .product-image {
+        height: 180px; /* Thu nhỏ ảnh điện thoại */
+    }
+
+    .product h3 {
+        font-size: 20px;
+    }
+
+    /* --- Khu vực Bộ sưu tập --- */
+    .collection-section {
+        flex-direction: column; /* Đổi thành bố cục dọc */
+        padding: 60px 20px;
+        text-align: center; /* Căn giữa chữ */
+    }
+
+    .collection-text {
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .large-collection-image {
+        height: auto;
+        max-height: 400px;
+    }
+
+    .shapes {
+        justify-content: center; /* Căn giữa các icon minh họa */
+        margin-bottom: 30px;
+    }
+
+    .big-title {
+        font-size: 40px;
+    }
 }

@@ -23,4 +23,36 @@ document.addEventListener("DOMContentLoaded", function() {
     // Tìm tất cả các thẻ có class 'fade-in' và yêu cầu Observer theo dõi chúng
     const hiddenElements = document.querySelectorAll('.fade-in');
     hiddenElements.forEach((el) => observer.observe(el));
+
+    // 3. Logic xử lý click nút mũi tên để cuộn qua lại sản phẩm
+    const slider = document.querySelector('.products-section');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (slider && prevBtn && nextBtn) {
+        // Hàm tính toán khoảng cách cần cuộn (Độ rộng 1 sản phẩm + gap)
+        const getScrollAmount = () => {
+            const firstProduct = slider.querySelector('.product');
+            if (firstProduct) {
+                return firstProduct.offsetWidth + 30; // 30 là khoảng cách gap giữa các khối
+            }
+            return 350; // Khoảng cách mặc định phòng trường hợp lỗi
+        };
+
+        // Click mũi tên bên Phải -> Cuộn tiến tới
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({
+                left: getScrollAmount(),
+                behavior: 'smooth'
+            });
+        });
+
+        // Click mũi tên bên Trái -> Cuộn lùi lại
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({
+                left: -getScrollAmount(),
+                behavior: 'smooth'
+            });
+        });
+    }
 });

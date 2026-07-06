@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceramix</title>
+    <title>NHOM3</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,43 +11,105 @@
     <header>
         <div class="logo">Ceramix</div>
         <nav>
-            <a href="#">WORK</a>
-            <a href="#">SHOP</a>
-            <a href="#">ABOUT</a>
+            <a href="#">Cửa Hàng</a>
+            <a href="#">Mac</a>
+            <a href="#">iPad</a>
+            <a href="#">iPhone</a>
+            <a href="#">Watch</a>
+            <a href="#">AirPods</a>
+            <a href="#">TV & Nhà</a>
+            <a href="#">Giải Trí</a>
+            <a href="#">Phụ Kiện</a>
+            <a href="#">Hỗ Trợ</a>
         </nav>
-        <div class="header-actions">
-            <button class="cart-btn">🛒</button>
-            <button class="contact-btn">CONTACT</button>
-        </div>
+    <div class="header-actions">
+        <button class="icon-btn search-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        </button>
+    
+        <button class="icon-btn cart-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        </button>
+</div>
     </header>
+    
 
-    <section class="products-section">
-        <div class="product fade-in">
-            <div class="img-placeholder" style="background-color: #d1cbc3;"></div>
-            <p class="price">$240</p>
-            <h3>Ember Hollow</h3>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-        
-        <div class="product fade-in" style="transition-delay: 100ms;">
-            <div class="img-placeholder" style="background-color: #2b2522;"></div>
-            <p class="price">$120</p>
-            <h3>Night Vessel</h3>
-            <button class="add-to-cart">ADD TO CART</button>
+    <div class="products-wrapper">
+        <div class="slider-navigation">
+            <button class="nav-arrow-btn prev-btn" aria-label="Previous">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+            <button class="nav-arrow-btn next-btn" aria-label="Next">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
         </div>
 
-        <div class="product fade-in" style="transition-delay: 200ms;">
-            <div class="img-placeholder" style="background-color: #e2e2e2;"></div>
-            <p class="price">$160</p>
-            <h3>Stripe Vase</h3>
-            <button class="add-to-cart">ADD TO CART</button>
-        </div>
-    </section>
+        <section class="products-section">
+            <div class="product fade-in" style="transition-delay: 0ms;">
+                <img src="img/iphone-17-pro-max-cam.png" alt="iphone17pm" class="product-image">
+                <p class="price">35.990.000₫</p>
+                <h3>iPhone 17 Pro Max 256GB</h3>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+            
+            <div class="product fade-in" style="transition-delay: 50ms;">
+                <img src="img/iphone-17-xanh-la.png" alt="iphone17" class="product-image">
+                <p class="price">23.990.000₫</p>
+                <h3>iPhone 17 256GB</h3>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+    
+            <div class="product fade-in" style="transition-delay: 100ms;">
+                <img src="img/iphone-air-xanh.png" alt="iphoneAir" class="product-image">
+                <p class="price">22.990.000₫</p>
+                <h3>iPhone Air 256GB</h3>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+    
+            <div class="product fade-in" style="transition-delay: 150ms;">
+                <img src="img/iphone-16-hong.png" alt="iphone16" class="product-image">
+                <p class="price">20.990.000₫</p>
+                <h3>iPhone 16 128GB</h3>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+            <div class="product fade-in" style="transition-delay: 200ms;">
+                <img src="img/iphone-17-pro-blue.png" alt="iphone17pro" class="product-image">
+                <p class="price">33.990.000₫</p>
+                <h3>iPhone 17 Pro 256GB</h3>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+            <div class="product fade-in" style="transition-delay: 250ms;">
+                <img src="img/iphone-16-plus-trang.png" alt="iphone16pls" class="product-image">
+                <p class="price">23.990.000₫</p>
+                <h3>iPhone 16 Plus 128GB</h3>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+            <div class="product fade-in" style="transition-delay: 300ms;">
+                <img src="img/iphone-15-plus-black.png" alt="iphone15pls" class="product-image">
+                <p class="price">17.990.000₫</p>
+                <h3>iPhone 15 Plus 128GB</h3>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+            <div class="product fade-in" style="transition-delay: 350ms;">
+                <img src="img/iphone-15-green.png" alt="iphone15" class="product-image">
+                <p class="price">17.990.000₫</p>
+                <h3>iPhone 15 128GB</h3>
+                <button class="add-to-cart">ADD TO CART</button>
+            </div>
+        </section>
+    </div>
 
     <section class="collection-section">
-        <div class="collection-image fade-in left">
-            <div class="img-placeholder large"></div>
-        </div>
+    <div class="collection-image fade-in left">
+        <img src="img/iphone-17-pro-max-cam.png" alt="iphone17prm" class="large-collection-image">
+    </div>
         <div class="collection-text fade-in right">
             <p>Shaped slowly by hand, each piece emerges through a quiet dialogue between pressure, pause, and resistance. Fired in subdued tones, their surfaces hold traces of touch and time.</p>
             <div class="shapes">

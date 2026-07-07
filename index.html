@@ -14,15 +14,23 @@
             <a href="#">Cửa Hàng</a>
             <a href="#">Mac</a>
             <a href="#">iPad</a>
-            <a href="#">iPhone</a>
-            <a href="#">Watch</a>
-            <a href="#">AirPods</a>
+            <a href="#section-iphone">iPhone</a>
+            <a href="#section-watch">Watch</a>
+            <a href="#hero-iphone-air">Khám Phá</a> <!-- Tạm link Airpods xuống phần Hero Parallax -->
             <a href="#">TV & Nhà</a>
             <a href="#">Giải Trí</a>
             <a href="#">Phụ Kiện</a>
             <a href="#">Hỗ Trợ</a>
         </nav>
     <div class="header-actions">
+        <!-- NÚT GIAO DIỆN SÁNG TỐI (MỚI) -->
+        <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Toggle Theme">
+            <!-- Icon Mặt Trăng -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <!-- Icon Mặt Trời (Ẩn mặc định) -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
         <button class="icon-btn search-btn" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
@@ -58,9 +66,18 @@
         </div>
     </div>
 
-    <!-- Tiêu đề khu vực iPhone -->
-    <div class="category-title fade-in">
-        <h2>Khám phá dòng sản phẩm</h2>
+    <!-- Tiêu đề khu vực iPhone & Thanh Sắp xếp -->
+    <div class="category-header fade-in" id="section-iphone">
+        <div class="category-title" style="padding: 0;">
+            <h2>Khám phá dòng sản phẩm</h2>
+        </div>
+        <div class="filter-sort-bar">
+            <select id="sort-select" class="sort-dropdown">
+                <option value="default">Sắp xếp: Mặc định</option>
+                <option value="asc">Giá: Thấp đến Cao</option>
+                <option value="desc">Giá: Cao đến Thấp</option>
+            </select>
+        </div>
     </div>
 
     <!-- Khu vực trượt của iPhone -->
@@ -78,7 +95,7 @@
     </div>
 
     <!-- Tiêu đề khu vực Watch -->
-    <div class="category-title fade-in">
+    <div class="category-title fade-in" id="section-watch">
         <h2>Apple Watch</h2>
     </div>
 
@@ -96,21 +113,42 @@
         <section class="products-section" id="watch-list"></section>
     </div>
 
-    <section class="collection-section">
-        <div class="collection-image fade-in left">
-            <img src="img/iphone-air-xanh.png" alt="iphone17prm" class="large-collection-image" loading="lazy">
+    <!-- ================= 1. NÂNG CẤP HERO SECTION (CUỘN PARALLAX & CHỌN MÀU) ================= -->
+    <section class="collection-section" id="hero-iphone-air">
+        <div class="collection-image-container fade-in left">
+            <!-- Đã thêm ID để JS gọi đổi ảnh -->
+            <img src="img/iphone-air-xanh.png" alt="iPhone Air" class="large-collection-image" id="hero-iphone-img" loading="lazy">
         </div>
+        
         <div class="collection-text fade-in right">
-            <!-- Đổi h1 thành h2 cho chuẩn cấu trúc SEO -->
             <h2 class="big-title">iPhone mỏng nhất từng có với sức mạnh pro bên trong.</h2>
-            <p>iPhone Air hoàn toàn mới mỏng nhẹ không tưởng, gần như tàng hình trong tay bạn. Với độ dày 5,6 mm và chỉ nặng 165 gram, đây là iPhone mỏng nhất từng có, ngay cả khi được trang bị màn hình 6,5 inch lớn và sống động cùng chip A19 Pro mạnh mẽ. Đây là một nghịch lý bạn phải cầm tận tay mới tin được.</p>
-            <div class="shapes">
-                <span class="shape">⬟ Xanh da trời</span>
-                <span class="shape">⬟ Trắng Mây</span>
-                <span class="shape">⬟ Đen Không Gian</span>
+            <p>iPhone Air hoàn toàn mới mỏng nhẹ không tưởng, gần như tàng hình trong tay bạn. Với độ dày 5,6 mm và chỉ nặng 165 gram, đây là iPhone mỏng nhất từng có, ngay cả khi được trang bị màn hình 6,5 inch lớn và sống động cùng chip A19 Pro mạnh mẽ.</p>
+            
+            <!-- BỘ CHỌN MÀU SẮC THỰC TẾ -->
+            <div class="color-swatches">
+                <button class="swatch active" style="background-color: #a1c4d6;" data-img="img/iphone-air-xanh.png" aria-label="Xanh da trời"></button>
+                <button class="swatch" style="background-color: #f2f2f0;" data-img="img/iphone-air-vang.png" aria-label="Trắng Mây"></button>
+                <button class="swatch" style="background-color: #2c2c2e;" data-img="img/iphone-air-den.png" aria-label="Đen Không Gian"></button>
+            </div>
+
+            <!-- NÚT KÊU GỌI HÀNH ĐỘNG -->
+            <div class="hero-cta">
+                <button class="btn-buy-hero btn-buy" data-name="iPhone Air 256GB" data-price="22.990.000₫" data-img="img/iphone-air-den.png">Mua ngay</button>
+                <a href="#" class="link-learn-more btn-learn-more" data-name="iPhone Air 256GB">Xem thêm về iPhone Air</a>
+            </div>
+
+            <!-- CÁC KHỐI CHỮ ĐỂ TẠO HIỆU ỨNG CUỘN (PARALLAX SCROLLING) -->
+            <div class="scroll-spacer">
+                <h3>Thiết kế Titan siêu nhẹ.</h3>
+                <p>Chất liệu hàng không vũ trụ giúp giảm trọng lượng tối đa nhưng vẫn giữ độ bền bỉ đáng kinh ngạc chống lại mọi va đập.</p>
+            </div>
+            <div class="scroll-spacer">
+                <h3>Màn hình viền siêu mỏng.</h3>
+                <p>Trải nghiệm thị giác không giới hạn với tấm nền OLED cao cấp và viền bezel mỏng nhất từ trước đến nay trên một thiết bị di động.</p>
             </div>
         </div>
     </section>
+
 
     <!-- ================= FOOTER ================= -->
     <footer class="site-footer">
@@ -242,6 +280,55 @@
         </div>
     </div>
 
+    <!-- ================= GIAO DIỆN FORM THANH TOÁN (CHECKOUT MODAL) ================= -->
+    <div class="modal-overlay" id="checkout-overlay"></div>
+    <div class="checkout-modal" id="checkout-modal">
+        <button class="close-modal" id="close-checkout" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <div class="checkout-content">
+            <h2>Thông tin giao hàng</h2>
+            <p class="checkout-subtitle">Vui lòng điền đầy đủ thông tin để nhận hàng</p>
+            
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>Họ và tên *</label>
+                    <input type="text" id="cus-name" required placeholder="Ví dụ: Nguyễn Văn A">
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại *</label>
+                    <input type="tel" id="cus-phone" required placeholder="Ví dụ: 0912345678">
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ nhận hàng *</label>
+                    <textarea id="cus-address" rows="3" required placeholder="Số nhà, Tên đường, Quận/Huyện, Tỉnh/Thành phố"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Phương thức thanh toán</label>
+                    <select id="cus-payment" class="checkout-select">
+                        <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                        <option value="transfer">Chuyển khoản ngân hàng</option>
+                    </select>
+                </div>
+                
+                <div class="checkout-summary">
+                    <span>Tổng thanh toán:</span>
+                    <span id="checkout-final-price" class="final-price">0₫</span>
+                </div>
+                
+                <button type="submit" class="btn-submit-order" id="btn-submit-order">Xác nhận đặt hàng</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= KHUNG CHỨA THÔNG BÁO BẬT LÊN (TOAST) ================= -->
+    <div id="toast-container" class="toast-container"></div>
+
     <script src="main.js"></script>
+
+    <!-- ================= NÚT CUỘN LÊN ĐẦU TRANG ================= -->
+    <button class="back-to-top" id="backToTop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
 </body>
 </html>

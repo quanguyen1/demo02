@@ -16,6 +16,11 @@
     --scrollbar-thumb: #75685e;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Trừ hao chiều cao của Header để không bị che khuất chữ */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -195,23 +200,29 @@ nav a:hover::after {
 
 /* Tùy chỉnh thanh cuộn ngang dưới cùng */
 .products-section::-webkit-scrollbar {
-    height: 4px;
+    height: 10px; /* Tăng độ cao (vùng bấm chuột) lên để cực kỳ dễ nắm kéo */
 }
 
 .products-section::-webkit-scrollbar-track {
     background: var(--scrollbar-track);
     border-radius: 10px;
     margin: 0 100px;
+    /* Dùng viền trùng màu nền để bóp thanh track mỏng lại ở giữa, tạo cảm giác thanh mảnh */
+    border-top: 5px solid var(--bg-main);
+    border-bottom: 5px solid var(--bg-main);
 }
 
 .products-section::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
+    background: #a8a09a; /* Làm màu sáng hơn để nó nổi bật hẳn lên như một tay cầm */
     border-radius: 10px;
-    cursor: pointer;
+    cursor: grab;
+    /* Viền mỏng hơn track để cục Thumb lồi ra to hơn thanh nền bên dưới */
+    border-top: 2px solid var(--bg-main);
+    border-bottom: 2px solid var(--bg-main);
 }
 
 .products-section::-webkit-scrollbar-thumb:hover {
-    background: #ffffff;
+    background: #ffffff; /* Sáng rực lên khi đưa chuột vào */
 }
 
 /* =========================================
@@ -933,3 +944,481 @@ PHẦN BẢN QUYỀN VÀ MẠNG XÃ HỘI
     padding-bottom: 30px;
 }
 .search-results::-webkit-scrollbar { display: none; }
+
+/* =========================================
+   11. NÂNG CẤP HERO SECTION & BENTO BOX
+========================================= */
+
+/* Ghi đè lại thuộc tính để bật Parallax Scrolling */
+.collection-section {
+    align-items: flex-start !important; /* Quan trọng để cuộn dính hoạt động */
+    position: relative;
+    padding-bottom: 0 !important;
+}
+
+.collection-image-container {
+    flex: 1;
+    position: sticky;
+    top: 150px; /* Ghim ảnh đứng yên ở vị trí cách viền trên 150px */
+    padding-bottom: 100px;
+}
+
+.large-collection-image {
+    transition: opacity 0.4s ease; /* Hiệu ứng mờ dần khi đổi màu áo */
+}
+
+/* Bộ chọn màu sắc (Color Swatches) */
+.color-swatches {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.swatch {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.swatch.active {
+    border-color: var(--text-main); /* Viền sáng lên khi được chọn */
+    transform: scale(1.2);
+}
+
+/* Nút Kêu gọi hành động (CTA) */
+.hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.btn-buy-hero {
+    background: var(--bg-main);
+    color: var(--text-main);
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-buy-hero:hover {
+    background: var(--text-main);
+    color: var(--bg-main); /* Thêm dòng này để chữ đổi sang màu tối */
+    transform: scale(1.05);
+}
+
+.link-learn-more {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.link-learn-more:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+/* Các đoạn chữ cuộn phía dưới (Scroll Spacers) */
+.scroll-spacer {
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scroll-spacer h3 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* =========================================
+   12. TÍNH NĂNG NÂNG CAO (TOAST, HEADER ĐỘNG, SẮP XẾP)
+========================================= */
+
+/* --- Hiệu ứng làm mờ và thu nhỏ Header khi cuộn --- */
+header {
+    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+header.scrolled {
+    padding: 15px 50px; /* Thu nhỏ Header lại */
+    background-color: rgba(55, 49, 45, 0.95); /* Kính mờ đục hơn một chút */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Thêm bóng đổ phân tách với sản phẩm */
+}
+
+/* --- Khung Tiêu đề và Thanh Sắp Xếp --- */
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 60px 20px 60px;
+}
+.sort-dropdown {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    appearance: none; /* Ẩn mũi tên mặc định của trình duyệt */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23b5aba2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 10px auto;
+    padding-right: 40px;
+}
+.sort-dropdown option {
+    background: var(--bg-main);
+    color: var(--text-main);
+}
+
+/* --- Thông báo trượt lên (Toast Notifications) --- */
+.toast-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.toast {
+    background: rgba(40, 40, 40, 0.85);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-main);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideUpFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.toast.hide {
+    animation: fadeOutDown 0.4s ease forwards;
+}
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(30px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeOutDown {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(30px) scale(0.9); }
+}
+
+/* =========================================
+   12. GIAO DIỆN SÁNG (LIGHT THEME)
+========================================= */
+[data-theme="light"] {
+    --bg-main: #f5f5f7; /* Màu xám sáng đặc trưng của Apple */
+    --text-main: #1d1d1f; /* Chữ xám đen đậm */
+    --text-muted: #86868b;
+    --border-color: #d2d2d7;
+    --btn-bg: #ffffff;
+    --btn-hover: #e8e8ed;
+    --icon-hover: #d2d2d7;
+    --scrollbar-track: #e8e8ed;
+    --scrollbar-thumb: #86868b;
+}
+
+/* Tinh chỉnh riêng vài nút cho hợp Theme Sáng */
+[data-theme="light"] .btn-buy-hero {
+    background: var(--text-main);
+    color: var(--bg-main);
+}
+[data-theme="light"] .btn-buy-hero:hover { background: #333333; }
+[data-theme="light"] .toast { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(0,0,0,0.1); }
+[data-theme="light"] .search-overlay, 
+[data-theme="light"] header.scrolled { background-color: rgba(245, 245, 247, 0.85); }
+[data-theme="light"] .sort-dropdown { background-color: var(--btn-bg); }
+[data-theme="light"] .cart-footer { background-color: rgba(245, 245, 247, 0.9); }
+
+/* Thêm transition để lúc chuyển đổi Sáng/Tối không bị giật khung hình */
+body, header, .product, .cart-sidebar, .quickview-modal {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* =========================================
+   13. NÚT CUỘN LÊN ĐẦU TRANG (BACK TO TOP)
+========================================= */
+.back-to-top {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 50px; height: 50px;
+    background-color: var(--text-main);
+    color: var(--bg-main);
+    border: none; border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 990;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden; transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.back-to-top.show {
+    opacity: 1; visibility: visible; transform: translateY(0);
+}
+
+.back-to-top svg { width: 24px; height: 24px; }
+.back-to-top:hover { transform: translateY(-5px) scale(1.05); }
+
+/* =========================================
+   14. FORM THANH TOÁN (CHECKOUT MODAL)
+========================================= */
+.checkout-modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -45%);
+    width: 500px; 
+    max-width: 90%;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    z-index: 1002;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-out;
+    padding: 40px;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.checkout-modal.active {
+    transform: translate(-50%, -50%);
+    opacity: 1; visibility: visible;
+}
+
+.checkout-content h2 { font-size: 24px; margin-bottom: 5px; font-weight: 500;}
+.checkout-subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 30px; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label {
+    display: block; font-size: 13px; margin-bottom: 8px; color: var(--text-muted);
+}
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Đảm bảo Form hiển thị đẹp trên cả Theme Sáng */
+[data-theme="light"] .form-group input, 
+[data-theme="light"] .form-group textarea, 
+[data-theme="light"] .form-group select { background: rgba(0,0,0,0.03); }
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--text-main);
+}
+
+.checkout-summary {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-top: 1px solid var(--border-color);
+    margin-top: 10px; margin-bottom: 20px;
+}
+.final-price { font-size: 22px; font-weight: bold; color: var(--text-main); }
+
+.btn-submit-order {
+    width: 100%; padding: 15px;
+    background-color: var(--text-main);
+    color: var(--bg-main);
+    border: none; border-radius: 30px;
+    font-size: 16px; font-weight: bold;
+    cursor: pointer; transition: all 0.3s ease;
+}
+.btn-submit-order:hover { background-color: #d1cbc5; transform: translateY(-2px); }
+
+[data-theme="light"] .btn-submit-order { background: var(--text-main); color: var(--bg-main); }
+[data-theme="light"] .btn-submit-order:hover { background: #333333; }
+
+/* =========================================
+   15. TỐI ƯU GIAO DIỆN DI ĐỘNG (RESPONSIVE GRID) - ĐÃ FIX LỖI NAV & FOOTER
+========================================= */
+
+/* --- DÀNH CHO MÁY TÍNH BẢNG (Màn hình từ 769px đến 1150px) - HIỂN THỊ 3 Ô --- */
+@media (max-width: 1150px) {
+    /* FIX LỖI THANH NAV: Cho phép thanh menu tự động vuốt ngang giống như mobile khi màn hình bắt đầu chật */
+    header { 
+        padding: 20px; 
+        flex-wrap: wrap; 
+    }
+    nav {
+        order: 3; /* Đẩy thanh nav xuống hàng thứ 2 dưới logo */
+        width: 100%; 
+        margin-top: 15px; 
+        display: flex; 
+        overflow-x: auto; /* Bật cuộn ngang */
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+    }
+    nav::-webkit-scrollbar { 
+        display: none; /* Ẩn thanh cuộn của menu */
+    }
+    nav a { 
+        white-space: nowrap; /* Không cho chữ rớt dòng */
+        margin: 0 12px; 
+    }
+
+    /* Chuyển đổi Slider thành Grid 3 ô */
+    .products-wrapper {
+        padding: 0 20px;
+    }
+    .products-section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        overflow-x: visible;
+        padding: 20px 0 40px 0;
+    }
+    .products-section::-webkit-scrollbar {
+        display: none;
+    }
+    .product {
+        flex: unset;
+        width: 100%;
+        scroll-snap-align: unset;
+    }
+    .slider-navigation {
+        display: none; /* Ẩn mũi tên */
+    }
+
+    /* Tối ưu Cửa sổ chi tiết và Form Checkout */
+    .quickview-modal, .checkout-modal {
+        flex-direction: column;
+        height: 90vh;
+        overflow-y: auto;
+    }
+    .modal-content {
+        flex-direction: column;
+        padding: 30px;
+        gap: 20px;
+    }
+    .modal-image-container img { height: 250px; }
+
+    /* Tối ưu khu vực Hero Parallax */
+    .collection-section {
+        flex-direction: column;
+        align-items: center !important;
+        padding-top: 40px;
+    }
+    .collection-image-container {
+        position: relative;
+        top: 0;
+        padding-bottom: 30px;
+    }
+    .large-collection-image { max-width: 80%; }
+    .collection-text { padding: 0 30px; text-align: center; }
+    .color-swatches, .hero-cta { justify-content: center; }
+
+    /* FIX LỖI FOOTER CHO TABLET: Chia thành 2 cột cân đối thay vì 1 hàng dọc */
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+}
+
+/* =========================================
+15. TỐI ƯU GIAO DIỆN DI ĐỘNG (RESPONSIVE GRID) - ĐÃ FIX LỖI NAV & FOOTER
+========================================= */
+/* --- DÀNH CHO ĐIỆN THOẠI (Dưới 768px) - HIỂN THỊ 2 Ô --- */
+@media (max-width: 768px) {
+    /* Thu nhỏ Header trên điện thoại */
+    header { padding: 15px 20px; }
+    .logo { font-size: 26px; }
+    nav { margin-top: 12px; }
+    
+    /* Ép Grid thành 2 ô và thu nhỏ chi tiết */
+    .products-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px; 
+    }
+    .product {
+        padding: 15px 10px;
+    }
+    .product-image {
+        height: 140px;
+        margin-bottom: 15px;
+    }
+    .product h3 {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    .product .price {
+        font-size: 12px;
+    }
+    .product-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .btn-learn-more, .btn-buy {
+        width: 100%;
+        padding: 8px 0;
+        font-size: 12px;
+    }
+
+    .category-header { flex-direction: column; gap: 15px; padding: 40px 20px 20px 20px; }
+    
+    /* Form Tìm kiếm (2 Cột) */
+    .search-input-wrapper input { font-size: 20px; } 
+    .search-results { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
+    
+    /* Giỏ hàng tràn màn hình */
+    .cart-sidebar {
+        width: 100%; 
+        right: -100%;
+    }
+    .cart-item-img { width: 50px; height: 50px; }
+
+    /* Căn chỉnh lại Nút Hero, Footer, Toast */
+    .hero-cta { flex-direction: column; gap: 15px; }
+    .btn-buy-hero { width: 100%; }
+    
+    /* FIX LỖI FOOTER CHO MOBILE: Chia thành 2 cột lưới cực kỳ gọn gàng */
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 20px;
+        padding-bottom: 30px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    .footer-bottom-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .checkout-modal, .quickview-modal { width: 95%; padding: 25px; }
+    .toast { width: 90%; font-size: 13px; bottom: 20px; justify-content: center; }
+    .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+}

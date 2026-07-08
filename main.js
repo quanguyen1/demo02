@@ -521,9 +521,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // ==========================================
-    // GIỎ HÀNG 
+    // GIỎ HÀNG & LOCALSTORAGE (ĐÃ FIX LỖI)
     // ==========================================
-    let cart = []; 
+    // [CẬP NHẬT 1]: Kiểm tra localStorage, nếu có thì lấy, không có thì tạo mảng rỗng
+    let cart = JSON.parse(localStorage.getItem('ceramix_cart')) || []; 
+    
     const cartBtn = document.getElementById('cart-btn');
     const cartSidebar = document.getElementById('cart-sidebar');
     const cartOverlay = document.getElementById('cart-overlay');
@@ -578,6 +580,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         cartTotalPrice.textContent = formatPrice(globalTotalMoney);
         attachCartEvents(); 
+        
+        // [CẬP NHẬT 2]: Ghi đè vào bộ nhớ máy tính mỗi khi giỏ hàng có sự thay đổi
+        localStorage.setItem('ceramix_cart', JSON.stringify(cart));
     }
 
     function attachCartEvents() {
@@ -644,7 +649,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 closeCheckout();
                 checkoutForm.reset(); 
                 cart = [];
-                updateCartUI();
+                updateCartUI(); // Reset bộ nhớ
             }, 2000);
         });
     }
@@ -688,12 +693,14 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => { heroImg.src = this.getAttribute('data-img'); heroImg.style.opacity = 1; }, 300);
         });
     });
-});
 
-// Ép trình duyệt luôn cuộn về đầu trang (0,0) khi người dùng nhấn F5 load lại trang
+    // [CẬP NHẬT 3]: Tự động quét bộ nhớ và hiển thị lại giỏ hàng cũ ngay khi vừa load xong trang
+    updateCartUI();
+
+    // [CẬP NHẬT 4]: Đặt logic ép cuộn F5 vào cuối khối để chạy an toàn tuyệt đối
     if (history.scrollRestoration) {
-        history.scrollRestoration = 'manual'; // Tắt tính năng tự ghi nhớ vị trí cuộn cũ của trình duyệt
+        history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
 
-    
+});

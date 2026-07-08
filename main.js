@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { 
             name: "iPhone Air 256GB", 
             price: "22.990.000₫", 
-            img: "img/iphone-air-den.png", 
+            img: "img/iphone-air-vang.png", 
             delay: 100, 
             specs: { screen: "6.5 inch OLED", chip: "A19 Pro", camera: "Camera đơn 48MP", size: "Dày 5.6 mm" }, 
             desc: "Chiếc iPhone mỏng nhẹ nhất trong lịch sử. Gần như tàng hình trong tay bạn nhưng vẫn sở hữu sức mạnh xử lý Pro." 
@@ -689,3 +689,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+// Ép trình duyệt luôn cuộn về đầu trang (0,0) khi người dùng nhấn F5 load lại trang
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual'; // Tắt tính năng tự ghi nhớ vị trí cuộn cũ của trình duyệt
+    }
+    window.scrollTo(0, 0);
+
+    

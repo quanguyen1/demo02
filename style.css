@@ -45,8 +45,12 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(55, 49, 45, 0.7);
-    backdrop-filter: blur(15px); /* Thêm hiệu ứng làm mờ nền kính cho Header */
+    /* Giảm độ đục từ 0.7 xuống 0.4 để trong suốt hơn, nhìn xuyên thấu sản phẩm rõ hơn */
+    background-color: rgba(55, 49, 45, 0.4); 
+    /* Tăng độ mờ kính từ 15px lên 25px để tạo hiệu ứng phủ mờ mịn màng kiểu iOS */
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px); /* Đảm bảo chạy mượt trên cả trình duyệt Safari/iPhone */
+    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo {
@@ -1055,9 +1059,13 @@ header {
     transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 header.scrolled {
-    padding: 15px 50px; /* Thu nhỏ Header lại */
-    background-color: rgba(55, 49, 45, 0.95); /* Kính mờ đục hơn một chút */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Thêm bóng đổ phân tách với sản phẩm */
+    padding: 15px 50px; /* Thu nhỏ Header lại như cũ */
+    /* Khi cuộn trang, chúng ta cũng giữ độ trong suốt ở mức 0.5 (thay vì 0.95 đục ngầu như trước) */
+    background-color: rgba(55, 49, 45, 0.5); 
+    /* Giữ nguyên độ mịn màng xuyên thấu khi sản phẩm chạy qua phía dưới */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ tinh tế */
 }
 
 /* --- Khung Tiêu đề và Thanh Sắp Xếp --- */
@@ -1067,7 +1075,7 @@ header.scrolled {
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 80px 60px 20px 60px;
+    padding: 100px 60px 20px 60px;
 }
 .sort-dropdown {
     background: transparent;
@@ -1151,7 +1159,7 @@ header.scrolled {
 [data-theme="light"] .btn-buy-hero:hover { background: #333333; }
 [data-theme="light"] .toast { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(0,0,0,0.1); }
 [data-theme="light"] .search-overlay, 
-[data-theme="light"] header.scrolled { background-color: rgba(245, 245, 247, 0.85); }
+[data-theme="light"] header.scrolled { background-color: rgba(245, 245, 247, 0.5) !important; }
 [data-theme="light"] .sort-dropdown { background-color: var(--btn-bg); }
 [data-theme="light"] .cart-footer { background-color: rgba(245, 245, 247, 0.9); }
 
@@ -1578,5 +1586,51 @@ header {
     }
     .nav-icon-menu::-webkit-scrollbar {
         display: none; /* Giấu thanh cuộn trên mobile */
+    }
+}
+
+/* =========================================
+   TỐI ƯU MENU NAV ICON CHO DI ĐỘNG & TABLET (KHI KHÔNG CÓ NÚT CHAT)
+========================================= */
+@media (max-width: 1150px) {
+    header { 
+        padding: 10px 15px !important; /* Thu nhỏ header cho thoáng màn hình mobile */
+        flex-wrap: wrap; 
+    }
+    .logo {
+        font-size: 24px !important;
+    }
+    /* Biến menu thành dải vuốt ngang mượt mà bằng ngón tay */
+    .nav-icon-menu {
+        order: 3; /* Đẩy menu xuống dưới logo */
+        width: 100%; 
+        margin-top: 10px; 
+        display: flex; 
+        gap: 5px; 
+        overflow-x: auto !important; /* Bật cuộn ngang */
+        justify-content: flex-start !important; /* Xếp đều từ trái qua */
+        padding-bottom: 8px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* Vuốt mượt trên iPhone/iOS */
+    }
+    
+    /* Giấu thanh cuộn của dải menu trên mobile */
+    .nav-icon-menu::-webkit-scrollbar { 
+        display: none !important; 
+        height: 0px !important;
+    }
+    
+    .nav-icon-menu a { 
+        flex: 0 0 60px; /* Cố định độ rộng mỗi mục 60px để chữ không bị co móp */
+        padding: 4px 0;
+        min-width: unset !important;
+    }
+    .nav-svg {
+        width: 18px !important; /* Thu nhỏ icon lại một chút */
+        height: 18px !important;
+        margin-bottom: 4px !important;
+    }
+    .nav-text-label {
+        font-size: 9.5px !important; /* Hạ cỡ chữ nhãn cho vừa vặn */
     }
 }

@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // ==========================================
-    // 1. MẢNG DỮ LIỆU SẢN PHẨM 
-    // ==========================================
+    // =========================================================================
+    // KHU VỰC 1: MẢNG DỮ LIỆU SẢN PHẨM (DATA MODELS)
+    // =========================================================================
     const iphonesData = [
         { 
             name: "iPhone 17 Pro Max 256GB", 
@@ -290,14 +290,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     ];
 
+    // Gộp toàn bộ mảng dữ liệu phục vụ tìm kiếm
     const allProducts = [...iphonesData, ...watchesData, ...macsData, ...ipadsData, ...accessoriesData];
+
+    // =========================================================================
+    // KHU VỰC 2: CÁC TIỆN ÍCH HỆ THỐNG & ĐỊNH DẠNG (UTILITIES)
+    // =========================================================================
     function parsePrice(priceString) { return parseInt(priceString.replace(/\./g, '').replace('₫', '')); }
     function formatPrice(priceNumber) { return priceNumber.toLocaleString('vi-VN') + '₫'; }
-    let globalTotalMoney = 0; // Biến lưu tổng tiền để truyền sang form thanh toán
+    let globalTotalMoney = 0; // Lưu tổng số tiền đơn hàng
 
-    // ==========================================
-    // TOAST, HEADER ĐỘNG, BACK TO TOP & THEME
-    // ==========================================
+    // =========================================================================
+    // KHU VỰC 3: HỆ THỐNG BỘ NHỚ LƯU TRỮ (LOCALSTORAGE)
+    // =========================================================================
+    let cart = JSON.parse(localStorage.getItem('ceramix_cart')) || []; 
+
+    // =========================================================================
+    // KHU VỰC 4: HIỆU ỨNG GIAO DIỆN CHUNG (THEME, SCROLL, TOAST)
+    // =========================================================================
     const header = document.querySelector('header');
     const backToTopBtn = document.getElementById('backToTop');
     
@@ -312,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function() {
         backToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
     }
 
+    // Logic Đổi Theme Sáng / Tối
     const themeBtn = document.getElementById('theme-toggle');
     const moonIcon = themeBtn.querySelector('.moon-icon');
     const sunIcon = themeBtn.querySelector('.sun-icon');
@@ -326,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let theme = document.documentElement.getAttribute('data-theme');
         if (theme === 'light') {
             document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark'); 
+            localStorage.setItem('theme', 'dark');
             moonIcon.style.display = 'block'; sunIcon.style.display = 'none';
         } else {
             document.documentElement.setAttribute('data-theme', 'light');
@@ -335,6 +346,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Thông báo Toast
     function showToast(message) {
         const toastContainer = document.getElementById('toast-container');
         if (!toastContainer) return;
@@ -348,9 +360,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 2500);
     }
 
-    // ==========================================
-    // RENDER & SLIDER LOGIC
-    // ==========================================
+    // =========================================================================
+    // KHU VỰC 5: LOGIC IN SẢN PHẨM & THANH TRƯỢT (RENDER & SLIDER LOGIC)
+    // =========================================================================
     function renderProducts(data, containerId) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -372,12 +384,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    renderProducts(iphonesData, "iphone-list");
-    renderProducts(watchesData, "watch-list");
-    renderProducts(macsData, "mac-list");
-    renderProducts(ipadsData, "ipad-list");
-    renderProducts(accessoriesData, "accessories-list");
-
+    // Quan sát hiệu ứng chuyển động xuất hiện dần (Intersection Observer)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -388,8 +395,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }, { threshold: 0.15 });
 
     function observeElements() { document.querySelectorAll('.fade-in:not(.show)').forEach((el) => observer.observe(el)); }
-    observeElements();
 
+    // Điều hướng nút mũi tên trượt ngang
     const wrappers = document.querySelectorAll('.products-wrapper');
     wrappers.forEach(wrapper => {
         const slider = wrapper.querySelector('.products-section');
@@ -405,15 +412,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Lọc và sắp xếp giá tiền
     const sortSelect = document.getElementById('sort-select');
     if (sortSelect) {
         sortSelect.addEventListener('change', function(e) {
             const sortType = e.target.value;
             let sortedIphones = [...iphonesData];
             let sortedWatches = [...watchesData];
-            let sortedMacs = [...macsData];     // Thêm Mac
-            let sortedIpads = [...ipadsData];   // Thêm iPad
-            let sortedAccessories = [...accessoriesData]; // Thêm Phụ Kiện
+            let sortedMacs = [...macsData];      
+            let sortedIpads = [...ipadsData];   
+            let sortedAccessories = [...accessoriesData]; 
 
             if (sortType === 'asc') {
                 sortedIphones.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
@@ -430,16 +438,63 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             renderProducts(sortedIphones, 'iphone-list');
             renderProducts(sortedWatches, 'watch-list');
-            renderProducts(sortedMacs, 'mac-list');     // Render lại Mac
-            renderProducts(sortedIpads, 'ipad-list');   // Render lại iPad
-            renderProducts(sortedAccessories, 'accessories-list'); // Render lại Phụ Kiện
+            renderProducts(sortedMacs, 'mac-list');     
+            renderProducts(sortedIpads, 'ipad-list');   
+            renderProducts(sortedAccessories, 'accessories-list'); 
             setTimeout(() => observeElements(), 50);
         });
     }
 
-    // ==========================================
-    // LOGIC MODAL TÌM HIỂU THÊM (CHỈ CÓ 1 ẢNH)
-    // ==========================================
+    // =========================================================================
+    // KHU VỰC 6: TÌM KIẾM TOÀN MÀN HÌNH (SEARCH BAR INTERACTION)
+    // =========================================================================
+    const searchOverlay = document.getElementById('search-overlay');
+    const btnSearchIcon = document.querySelector('.search-btn');
+    const btnCloseSearch = document.getElementById('close-search');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    function toggleSearch() {
+        searchOverlay.classList.toggle('active');
+        if (searchOverlay.classList.contains('active')) {
+            searchInput.value = ''; searchResults.innerHTML = '';
+            setTimeout(() => searchInput.focus(), 300);
+        }
+    }
+
+    if (btnSearchIcon) btnSearchIcon.addEventListener('click', toggleSearch);
+    if (btnCloseSearch) btnCloseSearch.addEventListener('click', toggleSearch);
+    if (searchOverlay) searchOverlay.addEventListener('click', function(e) { if (e.target === searchOverlay) toggleSearch(); });
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            const keyword = e.target.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            if (keyword.length === 0) return;
+            const filteredProducts = allProducts.filter(p => p.name.toLowerCase().includes(keyword));
+            if (filteredProducts.length === 0) {
+                searchResults.innerHTML = '<p style="color: #b5aba2; grid-column: 1/-1; text-align: center;">Không tìm thấy sản phẩm nào phù hợp.</p>';
+                return;
+            }
+            filteredProducts.forEach(product => {
+                searchResults.insertAdjacentHTML("beforeend", `
+                    <div class="product" style="padding: 15px;">
+                        <img src="${product.img}" alt="${product.name}" class="product-image" style="height: 150px;">
+                        <p class="price" style="font-size: 12px;">${product.price}</p>
+                        <h3 style="font-size: 14px; margin-bottom: 10px;">${product.name}</h3>
+                        <div class="product-actions" style="flex-direction: column; gap: 5px;">
+                            <a href="#" class="btn-learn-more" style="padding: 5px 0; width: 100%; font-size: 11px;" data-name="${product.name}">Chi tiết</a>
+                            <button class="btn-buy" style="padding: 5px 0; width: 100%; font-size: 11px;" data-name="${product.name}" data-price="${product.price}" data-img="${product.img}">Mua</button>
+                        </div>
+                    </div>
+                `);
+            });
+        });
+    }
+
+    // =========================================================================
+    // KHU VỰC 7: CHI TIẾT SẢN PHẨM QUICK VIEW (MODAL WINDOW)
+    // =========================================================================
     const modalOverlay = document.getElementById('quickview-overlay');
     const modal = document.getElementById('quickview-modal');
     const btnCloseModal = document.getElementById('close-modal');
@@ -475,57 +530,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if(btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
     if(modalOverlay) modalOverlay.addEventListener('click', function(e) { if(e.target === modalOverlay) closeModal(); });
 
-    // ==========================================
-    // TÌM KIẾM
-    // ==========================================
-    const searchOverlay = document.getElementById('search-overlay');
-    const btnSearchIcon = document.querySelector('.search-btn');
-    const btnCloseSearch = document.getElementById('close-search');
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-
-    function toggleSearch() {
-        searchOverlay.classList.toggle('active');
-        if (searchOverlay.classList.contains('active')) {
-            searchInput.value = ''; searchResults.innerHTML = '';
-            setTimeout(() => searchInput.focus(), 300);
-        }
-    }
-
-    btnSearchIcon.addEventListener('click', toggleSearch);
-    btnCloseSearch.addEventListener('click', toggleSearch);
-    searchOverlay.addEventListener('click', function(e) { if (e.target === searchOverlay) toggleSearch(); });
-
-    searchInput.addEventListener('input', function(e) {
-        const keyword = e.target.value.toLowerCase().trim();
-        searchResults.innerHTML = '';
-        if (keyword.length === 0) return;
-        const filteredProducts = allProducts.filter(p => p.name.toLowerCase().includes(keyword));
-        if (filteredProducts.length === 0) {
-            searchResults.innerHTML = '<p style="color: #b5aba2; grid-column: 1/-1; text-align: center;">Không tìm thấy sản phẩm nào phù hợp.</p>';
-            return;
-        }
-        filteredProducts.forEach(product => {
-            searchResults.insertAdjacentHTML("beforeend", `
-                <div class="product" style="padding: 15px;">
-                    <img src="${product.img}" alt="${product.name}" class="product-image" style="height: 150px;">
-                    <p class="price" style="font-size: 12px;">${product.price}</p>
-                    <h3 style="font-size: 14px; margin-bottom: 10px;">${product.name}</h3>
-                    <div class="product-actions" style="flex-direction: column; gap: 5px;">
-                        <a href="#" class="btn-learn-more" style="padding: 5px 0; width: 100%; font-size: 11px;" data-name="${product.name}">Chi tiết</a>
-                        <button class="btn-buy" style="padding: 5px 0; width: 100%; font-size: 11px;" data-name="${product.name}" data-price="${product.price}" data-img="${product.img}">Mua</button>
-                    </div>
-                </div>
-            `);
-        });
-    });
-
-    // ==========================================
-    // GIỎ HÀNG & LOCALSTORAGE (ĐÃ FIX LỖI)
-    // ==========================================
-    // [CẬP NHẬT 1]: Kiểm tra localStorage, nếu có thì lấy, không có thì tạo mảng rỗng
-    let cart = JSON.parse(localStorage.getItem('ceramix_cart')) || []; 
-    
+    // =========================================================================
+    // KHU VỰC 8: GIỎ HÀNG CHUYÊN SÂU (SHOPPING CART & UI UPDATE)
+    // =========================================================================
     const cartBtn = document.getElementById('cart-btn');
     const cartSidebar = document.getElementById('cart-sidebar');
     const cartOverlay = document.getElementById('cart-overlay');
@@ -539,9 +546,9 @@ document.addEventListener("DOMContentLoaded", function() {
         cartOverlay.classList.toggle('active');
     }
 
-    cartBtn.addEventListener('click', toggleCart);
-    closeCartBtn.addEventListener('click', toggleCart);
-    cartOverlay.addEventListener('click', function(e) { if(e.target === cartOverlay) toggleCart(); });
+    if (cartBtn) cartBtn.addEventListener('click', toggleCart);
+    if (closeCartBtn) closeCartBtn.addEventListener('click', toggleCart);
+    if (cartOverlay) cartOverlay.addEventListener('click', function(e) { if(e.target === cartOverlay) toggleCart(); });
 
     function updateCartUI() {
         cartItemsContainer.innerHTML = '';
@@ -580,8 +587,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         cartTotalPrice.textContent = formatPrice(globalTotalMoney);
         attachCartEvents(); 
-        
-        // [CẬP NHẬT 2]: Ghi đè vào bộ nhớ máy tính mỗi khi giỏ hàng có sự thay đổi
+
+        // Ghi dữ liệu đồng bộ vào máy người dùng
         localStorage.setItem('ceramix_cart', JSON.stringify(cart));
     }
 
@@ -595,9 +602,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }));
     }
 
-    // ==========================================
-    // LOGIC FORM THANH TOÁN (CHECKOUT MODAL)
-    // ==========================================
+    // =========================================================================
+    // KHU VỰC 9: THỦ TỤC ĐẶT HÀNG & GIAO DỊCH (CHECKOUT CONTROLLER)
+    // =========================================================================
     const btnOpenCheckout = document.querySelector('.btn-checkout');
     const checkoutOverlay = document.getElementById('checkout-overlay');
     const checkoutModal = document.getElementById('checkout-modal');
@@ -605,7 +612,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const checkoutForm = document.getElementById('checkout-form');
     const finalPriceDisplay = document.getElementById('checkout-final-price');
 
-    // Hàm đóng form thanh toán
     function closeCheckout() {
         checkoutOverlay.classList.remove('active');
         checkoutModal.classList.remove('active');
@@ -614,24 +620,33 @@ document.addEventListener("DOMContentLoaded", function() {
     if (closeCheckoutBtn) closeCheckoutBtn.addEventListener('click', closeCheckout);
     if (checkoutOverlay) checkoutOverlay.addEventListener('click', function(e) { if(e.target === checkoutOverlay) closeCheckout(); });
 
-    // Khi bấm "Thanh toán" trong Giỏ hàng
     if(btnOpenCheckout) {
         btnOpenCheckout.addEventListener('click', function() {
             if(cart.length === 0) {
                 showToast('Giỏ hàng của bạn đang trống!');
                 return;
             }
-            toggleCart(); // Đóng Giỏ hàng
-            finalPriceDisplay.textContent = formatPrice(globalTotalMoney); // Lấy số tiền từ Giỏ hàng truyền sang Form
-            checkoutOverlay.classList.add('active'); // Mở Form
+            toggleCart(); 
+            finalPriceDisplay.textContent = formatPrice(globalTotalMoney); 
+            checkoutOverlay.classList.add('active'); 
             checkoutModal.classList.add('active');
         });
     }
 
-    // Khi điền xong form và bấm Xác nhận
     if(checkoutForm) {
         checkoutForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Tránh bị load lại trang
+            e.preventDefault(); 
+            
+            // Lấy dữ liệu người dùng nhập vào
+            const phoneInput = document.getElementById('cus-phone').value.trim();
+            const nameInput = document.getElementById('cus-name').value.trim();
+            
+            // BẮT LỖI BẢO MẬT: Kiểm tra số điện thoại Việt Nam (phải có 10 số, bắt đầu bằng số 0)
+            const vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            if (!vnf_regex.test(phoneInput)) {
+                showToast('❌ Số điện thoại không đúng định dạng Việt Nam!');
+                return; // Dừng xử lý đơn hàng nếu nhập sai
+            }
             
             const btnSubmit = document.getElementById('btn-submit-order');
             const originalText = btnSubmit.textContent;
@@ -645,22 +660,25 @@ document.addEventListener("DOMContentLoaded", function() {
                 btnSubmit.style.opacity = '1';
                 btnSubmit.style.pointerEvents = 'auto';
                 
-                showToast('🎉 Đặt hàng thành công! Mã đơn: #HD' + Math.floor(Math.random() * 90000 + 10000));
+                // Hiển thị tên khách hàng lên câu chúc mừng cho thân thiện
+                showToast(`🎉 Cảm ơn ${nameInput}! Đặt hàng thành công. Mã đơn: #HD` + Math.floor(Math.random() * 90000 + 10000));
                 closeCheckout();
                 checkoutForm.reset(); 
                 cart = [];
-                updateCartUI(); // Reset bộ nhớ
+                updateCartUI();
             }, 2000);
         });
     }
 
-    // TỔNG HỢP LẮNG NGHE SỰ KIỆN CLICK TOÀN TRANG
+    // =========================================================================
+    // KHU VỰC 10: TỔNG HỢP LẮNG NGHE LỆNH CLICK TRÊN TOÀN TRANG (GLOBAL CLICKS)
+    // =========================================================================
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('btn-learn-more')) {
             e.preventDefault();
             const product = allProducts.find(p => p.name === e.target.getAttribute('data-name'));
             if (product) {
-                if(searchOverlay.classList.contains('active')) toggleSearch(); 
+                if(searchOverlay.classList.contains('active')) toggleSearch();  
                 openModal(product);
             }
         }
@@ -685,22 +703,36 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     const heroImg = document.getElementById('hero-iphone-img');
-    document.querySelectorAll('.swatch').forEach(swatch => {
-        swatch.addEventListener('click', function() {
-            document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-            heroImg.style.opacity = 0;
-            setTimeout(() => { heroImg.src = this.getAttribute('data-img'); heroImg.style.opacity = 1; }, 300);
+    if (heroImg) {
+        document.querySelectorAll('.swatch').forEach(swatch => {
+            swatch.addEventListener('click', function() {
+                document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                heroImg.style.opacity = 0;
+                setTimeout(() => { heroImg.src = this.getAttribute('data-img'); heroImg.style.opacity = 1; }, 300);
+            });
         });
-    });
+    }
 
-    // [CẬP NHẬT 3]: Tự động quét bộ nhớ và hiển thị lại giỏ hàng cũ ngay khi vừa load xong trang
+    // =========================================================================
+    // KHU VỰC 11: CẤU HÌNH KHỞI CHẠY HỆ THỐNG BAN ĐẦU (SYSTEM INITIALIZATION)
+    // =========================================================================
+    // 1. Kết xuất toàn bộ danh sách sản phẩm lên trang
+    renderProducts(iphonesData, "iphone-list");
+    renderProducts(watchesData, "watch-list");
+    renderProducts(macsData, "mac-list");
+    renderProducts(ipadsData, "ipad-list");
+    renderProducts(accessoriesData, "accessories-list");
+
+    // 2. Kích hoạt và hiển thị lại bộ nhớ giỏ hàng cũ ngay khi vừa mở web
     updateCartUI();
 
-    // [CẬP NHẬT 4]: Đặt logic ép cuộn F5 vào cuối khối để chạy an toàn tuyệt đối
+    // 3. Đăng ký các phần tử chuyển động ban đầu
+    observeElements();
+
+    // 4. Giải quyết triệt để lỗi nhích hàng khi nhấn F5
     if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
-
 });

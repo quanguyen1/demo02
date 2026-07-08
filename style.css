@@ -199,29 +199,35 @@ nav a:hover::after {
     scroll-snap-type: x mandatory;
 }
 
-/* Tùy chỉnh thanh cuộn ngang dưới cùng */
+/* =========================================
+TÙY CHỈNH THANH CUỘN (SCROLLBAR) - HIỆU ỨNG ẨN/HIỆN THÔNG MINH
+========================================= */
 .products-section::-webkit-scrollbar {
-    height: 10px; 
+    height: 1px;
 }
 
 .products-section::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
-    border-radius: 10px;
-    margin: 0 20px; /* Chỉnh lại lề của thanh cuộn cho khớp với padding của danh sách */
-    border-top: 5px solid var(--bg-main);
-    border-bottom: 5px solid var(--bg-main);
+    background: transparent;
+    margin: 0 40px;
 }
 
+/* 1. Trạng thái mặc định: Ẩn thanh cuộn (Màu trong suốt) */
 .products-section::-webkit-scrollbar-thumb {
-    background: #a8a09a; 
+    background: transparent; /* Chìa khóa nằm ở đây: Trong suốt hoàn toàn */
     border-radius: 10px;
-    cursor: grab;
-    border-top: 2px solid var(--bg-main);
-    border-bottom: 2px solid var(--bg-main);
+    border: 1px solid transparent;
+    background-clip: padding-box;
 }
 
-.products-section::-webkit-scrollbar-thumb:hover {
-    background: #ffffff; 
+/* 2. Trạng thái rê chuột: Bật màu lên CHỈ cho khu vực đang được rê chuột vào */
+.products-wrapper:hover .products-section::-webkit-scrollbar-thumb {
+    background: var(--text-muted); 
+}
+
+/* 3. Trạng thái tương tác: Rê chuột trực tiếp lên cục thumb để kéo thì phát sáng */
+.products-wrapper:hover .products-section::-webkit-scrollbar-thumb:hover {
+    background: var(--text-main);
+    border: 1px solid transparent;
 }
 
 /* =========================================
@@ -1420,4 +1426,157 @@ body, header, .product, .cart-sidebar, .quickview-modal {
     .checkout-modal, .quickview-modal { width: 95%; padding: 25px; }
     .toast { width: 90%; font-size: 13px; bottom: 20px; justify-content: center; }
     .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+}
+
+/* =========================================
+   KHU VỰC HỖ TRỢ (SUPPORT SECTION)
+========================================= */
+.support-section {
+    padding: 20px 60px 80px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.support-card {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.support-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.support-icon {
+    width: 45px; 
+    height: 45px;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.support-card h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.support-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Đảm bảo giao diện Hỗ trợ đẹp trên Mobile/Tablet */
+@media (max-width: 1150px) {
+    .support-section { padding: 20px; }
+    .support-grid { gap: 20px; }
+}
+
+@media (max-width: 768px) {
+    .support-grid { grid-template-columns: 1fr; }
+    .support-card { padding: 30px 20px; }
+}
+
+/* Hỗ trợ chế độ Sáng (Light Theme) */
+[data-theme="light"] .support-card { background: var(--btn-bg); }
+
+/* =========================================
+   THIẾT KẾ MENU ICON KÈM CHỮ (CẢI TIẾN UX)
+========================================= */
+header {
+    transition: all 0.3s ease;
+    padding: 15px 50px; /* Thu hẹp padding trên/dưới của header lại một chút vì thực tế chiều cao menu đã tăng lên do có chữ */
+}
+
+.logo {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.logo:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+/* Cấu trúc chứa menu các Icon */
+.nav-icon-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Khoảng cách lý tưởng giữa các khối icon */
+}
+
+.nav-icon-menu a {
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column; /* Xếp icon ở trên, chữ ở dưới */
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 4px 6px;
+    margin: 0;
+    min-width: 65px; /* Đảm bảo các khối menu có chiều rộng bằng nhau để thẳng hàng */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Kích cỡ icon SVG trên thanh Nav */
+.nav-svg {
+    width: 20px; /* Giảm nhẹ xuống 20px để nhìn thanh thoát hơn khi đi kèm chữ */
+    height: 20px;
+    stroke: currentColor;
+    margin-bottom: 6px; /* Khoảng cách giữa icon và chữ phía dưới */
+    transition: transform 0.2s ease;
+}
+
+/* Định dạng nhãn chữ hiển thị cố định ngay dưới icon */
+.nav-text-label {
+    font-size: 10.5px; /* Cỡ chữ nhỏ, tinh tế theo đúng ngôn ngữ thiết kế tối giản */
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-align: center;
+    white-space: nowrap; /* Không cho chữ rớt dòng */
+    transition: color 0.2s ease;
+}
+
+/* Bỏ hoàn toàn thuộc tính Tooltip cũ của bạn */
+.nav-tooltip {
+    display: none !important;
+}
+
+/* Hiệu ứng tương tác đồng bộ khi rê chuột vào */
+.nav-icon-menu a:hover {
+    color: var(--text-main);
+    transform: translateY(-2px); /* Nhấc nhẹ cả cụm lên 2px khi hover */
+}
+
+.nav-icon-menu a:hover .nav-svg {
+    transform: scale(1.05); /* Phóng to nhẹ icon */
+}
+
+/* Đảm bảo menu trượt ngang gọn gàng trên máy tính bảng và mobile */
+@media (max-width: 1150px) {
+    header {
+        padding: 15px 20px;
+    }
+    .nav-icon-menu {
+        order: 3;
+        width: 100%;
+        margin-top: 15px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        gap: 10px;
+    }
+    .nav-icon-menu::-webkit-scrollbar {
+        display: none; /* Giấu thanh cuộn trên mobile */
+    }
 }

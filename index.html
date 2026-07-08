@@ -1,228 +1,638 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NHOM3</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ================= HEADER VỚI MENU ICON VÀ CHỮ HIỂN THỊ (CẬP NHẬT) ================= -->
+    <header id="store-home">
+      <!-- Bấm vào logo sẽ cuộn về đúng vị trí đầu trang header -->
+      <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">Ceramix</div>
+      
+      <nav class="nav-icon-menu">
+        <!-- 1. Home -->
+        <a href="#store-home" aria-label="Home">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span class="nav-text-label">Home</span>
+        </a>
 
-    <header>
-        <div class="logo">Ceramix</div>
-        <nav>
-            <a href="#">Cửa Hàng</a>
-            <a href="#">Mac</a>
-            <a href="#">iPad</a>
-            <a href="#section-iphone">iPhone</a>
-            <a href="#section-watch">Watch</a>
-            <a href="#hero-iphone-air">Khám Phá</a> <!-- Tạm link Airpods xuống phần Hero Parallax -->
-            <a href="#">TV & Nhà</a>
-            <a href="#">Giải Trí</a>
-            <a href="#">Phụ Kiện</a>
-            <a href="#">Hỗ Trợ</a>
-        </nav>
-    <div class="header-actions">
+        <!-- 2. Mac -->
+        <a href="#section-mac" aria-label="Mac">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="12" rx="1"></rect><path d="M7 15h10M3 21h18M9 15v3m6-3v3M10 18h4"></path></svg>
+          <span class="nav-text-label">Mac</span>
+        </a>
+
+        <!-- 3. iPhone -->
+        <a href="#section-iphone" aria-label="iPhone">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="3"></rect><circle cx="12" cy="18" r="1"></circle><path d="M12 5h.01"></path></svg>
+          <span class="nav-text-label">iPhone</span>
+        </a>
+
+        <!-- 4. iPad -->
+        <a href="#section-ipad" aria-label="iPad">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2" stroke-linecap="round"></line></svg>
+          <span class="nav-text-label">iPad</span>
+        </a>
+
+        <!-- 5. Watch -->
+        <a href="#section-watch" aria-label="Watch">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="5" width="12" height="14" rx="3"></rect><path d="M9 5V2h6v3M9 19v3h6v-3"></path><circle cx="12" cy="12" r="2"></circle></svg>
+          <span class="nav-text-label">Watch</span>
+        </a>
+
+        <!-- 6. Phụ Kiện -->
+        <a href="#section-accessories" aria-label="Phụ Kiện">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+          <span class="nav-text-label">Phụ Kiện</span>
+        </a>
+
+        <!-- 7. TV & Nhà -->
+        <a href="#section-accessories" aria-label="TV & Nhà">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span class="nav-text-label">TV & Nhà</span>
+        </a>
+
+        <!-- 8. Khám Phá -->
+        <a href="#hero-iphone-air" aria-label="Khám Phá">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          <span class="nav-text-label">Khám Phá</span>
+        </a>
+
+        <!-- 9. Hỗ Trợ -->
+        <a href="#section-support" aria-label="Hỗ Trợ">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span class="nav-text-label">Hỗ Trợ</span>
+        </a>
+      </nav>
+
+      <div class="header-actions">
         <!-- NÚT GIAO DIỆN SÁNG TỐI (MỚI) -->
-        <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Toggle Theme">
-            <!-- Icon Mặt Trăng -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            <!-- Icon Mặt Trời (Ẩn mặc định) -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <button
+          class="icon-btn theme-btn"
+          id="theme-toggle"
+          aria-label="Toggle Theme"
+        >
+          <!-- Icon Mặt Trăng -->
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="moon-icon"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <!-- Icon Mặt Trời (Ẩn mặc định) -->
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="sun-icon"
+            style="display: none"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
         </button>
 
         <button class="icon-btn search-btn" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
+          </svg>
         </button>
-    
+
         <!-- Nút Giỏ hàng MỚI -->
         <button class="icon-btn cart-btn" id="cart-btn" aria-label="Cart">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
-            <span class="cart-badge" id="cart-badge">0</span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge" id="cart-badge">0</span>
         </button>
-</div>
+      </div>
     </header>
 
     <!-- ================= GIAO DIỆN TÌM KIẾM TOÀN MÀN HÌNH ================= -->
     <div class="search-overlay" id="search-overlay">
-        <button class="close-search" id="close-search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        <div class="search-container">
-            <div class="search-input-wrapper">
-                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="search-input" placeholder="Tìm kiếm iPhone, Watch..." autocomplete="off">
-            </div>
-            <div class="search-results" id="search-results">
-                <!-- Javascript sẽ tự in sản phẩm tìm được vào đây -->
-            </div>
+      <button class="close-search" id="close-search">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <svg
+            class="search-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Tìm kiếm iPhone, Watch..."
+            autocomplete="off"
+          />
         </div>
+        <div class="search-results" id="search-results">
+          <!-- Javascript sẽ tự in sản phẩm tìm được vào đây -->
+        </div>
+      </div>
     </div>
 
     <!-- Tiêu đề khu vực iPhone & Thanh Sắp xếp -->
     <div class="category-header fade-in" id="section-iphone">
-        <div class="category-title" style="padding: 0;">
-            <h2>Khám phá dòng sản phẩm</h2>
-        </div>
-        <div class="filter-sort-bar">
-            <select id="sort-select" class="sort-dropdown">
-                <option value="default">Sắp xếp: Mặc định</option>
-                <option value="asc">Giá: Thấp đến Cao</option>
-                <option value="desc">Giá: Cao đến Thấp</option>
-            </select>
-        </div>
+      <div class="category-title" style="padding: 0">
+        <h2>Khám phá dòng sản phẩm iPhone</h2>
+      </div>
+      <div class="filter-sort-bar">
+        <select id="sort-select" class="sort-dropdown">
+          <option value="default">Sắp xếp: Mặc định</option>
+          <option value="asc">Giá: Thấp đến Cao</option>
+          <option value="desc">Giá: Cao đến Thấp</option>
+        </select>
+      </div>
     </div>
 
     <!-- Khu vực trượt của iPhone -->
     <div class="products-wrapper">
-        <div class="slider-navigation">
-            <button class="nav-arrow-btn prev-btn" aria-label="Previous">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            </button>
-            <button class="nav-arrow-btn next-btn" aria-label="Next">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </button>
-        </div>
-        <!-- Đổi id thành iphone-list -->
-        <section class="products-section" id="iphone-list"></section>
+      <div class="slider-navigation">
+        <button class="nav-arrow-btn prev-btn" aria-label="Previous">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <button class="nav-arrow-btn next-btn" aria-label="Next">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+      <!-- Đổi id thành iphone-list -->
+      <section class="products-section" id="iphone-list"></section>
     </div>
 
     <!-- Tiêu đề khu vực Watch -->
     <div class="category-title fade-in" id="section-watch">
-        <h2>Apple Watch</h2>
+      <h2>Apple Watch</h2>
     </div>
 
     <!-- Khu vực trượt của Watch -->
     <div class="products-wrapper">
-        <div class="slider-navigation">
-            <button class="nav-arrow-btn prev-btn" aria-label="Previous">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            </button>
-            <button class="nav-arrow-btn next-btn" aria-label="Next">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </button>
-        </div>
-        <!-- Thẻ section mới có id là watch-list -->
-        <section class="products-section" id="watch-list"></section>
+      <div class="slider-navigation">
+        <button class="nav-arrow-btn prev-btn" aria-label="Previous">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <button class="nav-arrow-btn next-btn" aria-label="Next">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+      <!-- Thẻ section mới có id là watch-list -->
+      <section class="products-section" id="watch-list"></section>
+    </div>
+
+    <!-- Tiêu đề khu vực Mac -->
+    <div class="category-title fade-in" id="section-mac">
+      <h2>Mac</h2>
+    </div>
+    <!-- Khu vực trượt của Mac -->
+    <div class="products-wrapper">
+      <div class="slider-navigation">
+        <button class="nav-arrow-btn prev-btn" aria-label="Previous">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <button class="nav-arrow-btn next-btn" aria-label="Next">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+      <section class="products-section" id="mac-list"></section>
+    </div>
+
+    <!-- Tiêu đề khu vực iPad -->
+    <div class="category-title fade-in" id="section-ipad">
+      <h2>iPad</h2>
+    </div>
+    <!-- Khu vực trượt của iPad -->
+    <div class="products-wrapper">
+      <div class="slider-navigation">
+        <button class="nav-arrow-btn prev-btn" aria-label="Previous">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <button class="nav-arrow-btn next-btn" aria-label="Next">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+      <section class="products-section" id="ipad-list"></section>
+    </div>
+
+    <!-- Tiêu đề khu vực Phụ Kiện -->
+    <div class="category-title fade-in" id="section-accessories">
+      <h2>Phụ Kiện</h2>
+    </div>
+    <!-- Khu vực trượt của Phụ Kiện -->
+    <div class="products-wrapper">
+      <div class="slider-navigation">
+        <button class="nav-arrow-btn prev-btn" aria-label="Previous">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <button class="nav-arrow-btn next-btn" aria-label="Next">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+      <section class="products-section" id="accessories-list"></section>
     </div>
 
     <!-- ================= 1. NÂNG CẤP HERO SECTION (CUỘN PARALLAX & CHỌN MÀU) ================= -->
     <section class="collection-section" id="hero-iphone-air">
-        <div class="collection-image-container fade-in left">
-            <!-- Đã thêm ID để JS gọi đổi ảnh -->
-            <img src="img/iphone-air-xanh.png" alt="iPhone Air" class="large-collection-image" id="hero-iphone-img" loading="lazy">
-        </div>
-        
-        <div class="collection-text fade-in right">
-            <h2 class="big-title">iPhone mỏng nhất từng có với sức mạnh pro bên trong.</h2>
-            <p>iPhone Air hoàn toàn mới mỏng nhẹ không tưởng, gần như tàng hình trong tay bạn. Với độ dày 5,6 mm và chỉ nặng 165 gram, đây là iPhone mỏng nhất từng có, ngay cả khi được trang bị màn hình 6,5 inch lớn và sống động cùng chip A19 Pro mạnh mẽ.</p>
-            
-            <!-- BỘ CHỌN MÀU SẮC THỰC TẾ -->
-            <div class="color-swatches">
-                <button class="swatch active" style="background-color: #a1c4d6;" data-img="img/iphone-air-xanh.png" aria-label="Xanh da trời"></button>
-                <button class="swatch" style="background-color: #f2f2f0;" data-img="img/iphone-air-vang.png" aria-label="Trắng Mây"></button>
-                <button class="swatch" style="background-color: #2c2c2e;" data-img="img/iphone-air-den.png" aria-label="Đen Không Gian"></button>
-            </div>
+      <div class="collection-image-container fade-in left">
+        <!-- Đã thêm ID để JS gọi đổi ảnh -->
+        <img
+          src="img/iphone-air-xanh.png"
+          alt="iPhone Air"
+          class="large-collection-image"
+          id="hero-iphone-img"
+          loading="lazy"
+        />
+      </div>
 
-            <!-- NÚT KÊU GỌI HÀNH ĐỘNG -->
-            <div class="hero-cta">
-                <button class="btn-buy-hero btn-buy" data-name="iPhone Air 256GB" data-price="22.990.000₫" data-img="img/iphone-air-den.png">Mua ngay</button>
-                <a href="#" class="link-learn-more btn-learn-more" data-name="iPhone Air 256GB">Xem thêm về iPhone Air</a>
-            </div>
+      <div class="collection-text fade-in right">
+        <h2 class="big-title">
+          iPhone mỏng nhất từng có với sức mạnh pro bên trong.
+        </h2>
+        <p>
+          iPhone Air hoàn toàn mới mỏng nhẹ không tưởng, gần như tàng hình trong
+          tay bạn. Với độ dày 5,6 mm và chỉ nặng 165 gram, đây là iPhone mỏng
+          nhất từng có, ngay cả khi được trang bị màn hình 6,5 inch lớn và sống
+          động cùng chip A19 Pro mạnh mẽ.
+        </p>
 
-            <!-- CÁC KHỐI CHỮ ĐỂ TẠO HIỆU ỨNG CUỘN (PARALLAX SCROLLING) -->
-            <div class="scroll-spacer">
-                <h3>Thiết kế Titan siêu nhẹ.</h3>
-                <p>Chất liệu hàng không vũ trụ giúp giảm trọng lượng tối đa nhưng vẫn giữ độ bền bỉ đáng kinh ngạc chống lại mọi va đập.</p>
-            </div>
-            <div class="scroll-spacer">
-                <h3>Màn hình viền siêu mỏng.</h3>
-                <p>Trải nghiệm thị giác không giới hạn với tấm nền OLED cao cấp và viền bezel mỏng nhất từ trước đến nay trên một thiết bị di động.</p>
-            </div>
+        <!-- BỘ CHỌN MÀU SẮC THỰC TẾ -->
+        <div class="color-swatches">
+          <button
+            class="swatch active"
+            style="background-color: #a1c4d6"
+            data-img="img/iphone-air-xanh.png"
+            aria-label="Xanh da trời"
+          ></button>
+          <button
+            class="swatch"
+            style="background-color: #f2f2f0"
+            data-img="img/iphone-air-vang.png"
+            aria-label="Trắng Mây"
+          ></button>
+          <button
+            class="swatch"
+            style="background-color: #2c2c2e"
+            data-img="img/iphone-air-den.png"
+            aria-label="Đen Không Gian"
+          ></button>
         </div>
+
+        <!-- NÚT KÊU GỌI HÀNH ĐỘNG -->
+        <div class="hero-cta">
+          <button
+            class="btn-buy-hero btn-buy"
+            data-name="iPhone Air 256GB"
+            data-price="22.990.000₫"
+            data-img="img/iphone-air-den.png"
+          >
+            Mua ngay
+          </button>
+          <a
+            href="#"
+            class="link-learn-more btn-learn-more"
+            data-name="iPhone Air 256GB"
+            >Xem thêm về iPhone Air</a
+          >
+        </div>
+
+        <!-- CÁC KHỐI CHỮ ĐỂ TẠO HIỆU ỨNG CUỘN (PARALLAX SCROLLING) -->
+        <div class="scroll-spacer">
+          <h3>Thiết kế Titan siêu nhẹ.</h3>
+          <p>
+            Chất liệu hàng không vũ trụ giúp giảm trọng lượng tối đa nhưng vẫn
+            giữ độ bền bỉ đáng kinh ngạc chống lại mọi va đập.
+          </p>
+        </div>
+        <div class="scroll-spacer">
+          <h3>Màn hình viền siêu mỏng.</h3>
+          <p>
+            Trải nghiệm thị giác không giới hạn với tấm nền OLED cao cấp và viền
+            bezel mỏng nhất từ trước đến nay trên một thiết bị di động.
+          </p>
+        </div>
+      </div>
     </section>
 
+    <!-- ================= KHU VỰC HỖ TRỢ (MỚI) ================= -->
+    <section class="support-section fade-in" id="section-support">
+      <div class="category-title" style="padding-bottom: 0">
+        <h2>Bạn cần hỗ trợ?</h2>
+        <p style="color: var(--text-muted); margin-top: 10px">
+          Ceramix luôn sẵn sàng giúp đỡ bạn.
+        </p>
+      </div>
+      <div class="support-grid">
+        <!-- Box 1 -->
+        <div class="support-card">
+          <svg
+            class="support-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            ></path>
+          </svg>
+          <h3>Chat với chuyên gia</h3>
+          <p>Nhận hỗ trợ trực tuyến 24/7 từ đội ngũ kỹ thuật của chúng tôi.</p>
+          <a href="#" class="link-learn-more">Bắt đầu chat</a>
+        </div>
+        <!-- Box 2 -->
+        <div class="support-card">
+          <svg
+            class="support-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <h3>Đặt lịch sửa chữa</h3>
+          <p>Tìm trung tâm bảo hành gần nhất và đặt lịch hẹn dễ dàng.</p>
+          <a href="#" class="link-learn-more">Tìm trung tâm</a>
+        </div>
+        <!-- Box 3 -->
+        <div class="support-card">
+          <svg
+            class="support-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <h3>Câu hỏi thường gặp</h3>
+          <p>Tìm hiểu các hướng dẫn sử dụng và mẹo dùng thiết bị Apple.</p>
+          <a href="#" class="link-learn-more">Xem hướng dẫn</a>
+        </div>
+      </div>
+    </section>
 
     <!-- ================= FOOTER ================= -->
     <footer class="site-footer">
-        <div class="footer-content fade-in">
-            <div class="footer-column">
-                <h3>Khám phá</h3>
-                <ul>
-                    <li><a href="#">Mac</a></li>
-                    <li><a href="#">iPad</a></li>
-                    <li><a href="#">iPhone</a></li>
-                    <li><a href="#">Watch</a></li>
-                    <li><a href="#">AirPods</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Dịch vụ</h3>
-                <ul>
-                    <li><a href="#">Apple Music</a></li>
-                    <li><a href="#">Apple TV+</a></li>
-                    <li><a href="#">Apple Arcade</a></li>
-                    <li><a href="#">iCloud</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Hỗ trợ</h3>
-                <ul>
-                    <li><a href="#">Tìm trung tâm bảo hành</a></li>
-                    <li><a href="#">Mua trả góp</a></li>
-                    <li><a href="#">Kiểm tra đơn hàng</a></li>
-                    <li><a href="#">Trợ giúp & CSKH</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Về Ceramix</h3>
-                <ul>
-                    <li><a href="#">Giới thiệu công ty</a></li>
-                    <li><a href="#">Cơ hội nghề nghiệp</a></li>
-                    <li><a href="#">Sự kiện</a></li>
-                    <li><a href="#">Liên hệ</a></li>
-                </ul>
-            </div>
+      <div class="footer-content fade-in">
+        <div class="footer-column">
+          <h3>Khám phá</h3>
+          <ul>
+            <li><a href="#">Mac</a></li>
+            <li><a href="#">iPad</a></li>
+            <li><a href="#">iPhone</a></li>
+            <li><a href="#">Watch</a></li>
+            <li><a href="#">AirPods</a></li>
+          </ul>
         </div>
-        
-        <div class="footer-bottom fade-in">
-            <div class="footer-bottom-info">
-                <p>&copy; 2026 Ceramix. Bảo lưu mọi quyền.</p>
-                <div class="footer-legal">
-                    <a href="#">Chính sách quyền riêng tư</a> |
-                    <a href="#">Điều khoản sử dụng</a> |
-                    <a href="#">Bán hàng và Hoàn tiền</a>
-                </div>
-            </div>
-            
-            <!-- Khu vực Icon Mạng Xã Hội -->
-            <div class="footer-social">
-                <a href="#" aria-label="Facebook" class="social-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                    </svg>
-                </a>
-                <a href="#" aria-label="Instagram" class="social-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </a>
-                <a href="#" aria-label="Twitter" class="social-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                    </svg>
-                </a>
-            </div>
+        <div class="footer-column">
+          <h3>Dịch vụ</h3>
+          <ul>
+            <li><a href="#">Apple Music</a></li>
+            <li><a href="#">Apple TV+</a></li>
+            <li><a href="#">Apple Arcade</a></li>
+            <li><a href="#">iCloud</a></li>
+          </ul>
         </div>
+        <div class="footer-column">
+          <h3>Hỗ trợ</h3>
+          <ul>
+            <li><a href="#">Tìm trung tâm bảo hành</a></li>
+            <li><a href="#">Mua trả góp</a></li>
+            <li><a href="#">Kiểm tra đơn hàng</a></li>
+            <li><a href="#">Trợ giúp & CSKH</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Về Ceramix</h3>
+          <ul>
+            <li><a href="#">Giới thiệu công ty</a></li>
+            <li><a href="#">Cơ hội nghề nghiệp</a></li>
+            <li><a href="#">Sự kiện</a></li>
+            <li><a href="#">Liên hệ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom fade-in">
+        <div class="footer-bottom-info">
+          <p>&copy; 2026 Ceramix. Bảo lưu mọi quyền.</p>
+          <div class="footer-legal">
+            <a href="#">Chính sách quyền riêng tư</a> |
+            <a href="#">Điều khoản sử dụng</a> |
+            <a href="#">Bán hàng và Hoàn tiền</a>
+          </div>
+        </div>
+
+        <!-- Khu vực Icon Mạng Xã Hội -->
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook" class="social-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+              ></path>
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="social-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="social-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
     </footer>
 
     <!-- ================= GIAO DIỆN GIỎ HÀNG ================= -->
@@ -231,94 +641,149 @@
 
     <!-- Thanh Giỏ hàng trượt từ phải sang -->
     <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-            <h2>Giỏ hàng của bạn</h2>
-            <button class="close-cart" id="close-cart">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
+      <div class="cart-header">
+        <h2>Giỏ hàng của bạn</h2>
+        <button class="close-cart" id="close-cart">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="cart-items" id="cart-items">
+        <!-- Sản phẩm sẽ được hiển thị ở đây bằng Javascript -->
+        <p class="empty-cart-msg">Giỏ hàng đang trống.</p>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Tổng tiền:</span>
+          <span id="cart-total-price">0₫</span>
         </div>
-        
-        <div class="cart-items" id="cart-items">
-            <!-- Sản phẩm sẽ được hiển thị ở đây bằng Javascript -->
-            <p class="empty-cart-msg">Giỏ hàng đang trống.</p>
-        </div>
-        
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Tổng tiền:</span>
-                <span id="cart-total-price">0₫</span>
-            </div>
-            <button class="btn-checkout">Thanh toán</button>
-        </div>
+        <button class="btn-checkout">Thanh toán</button>
+      </div>
     </div>
 
     <!-- ================= GIAO DIỆN CHI TIẾT SẢN PHẨM (MODAL QUICK VIEW) ================= -->
     <div class="modal-overlay" id="quickview-overlay"></div>
     <div class="quickview-modal" id="quickview-modal">
-        <button class="close-modal" id="close-modal" aria-label="Close">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        <div class="modal-content">
-            <div class="modal-image-container">
-                <img src="" alt="Product" id="modal-img">
-            </div>
-            <div class="modal-info">
-                <h2 id="modal-title">Tên sản phẩm</h2>
-                <p class="modal-price" id="modal-price">Giá</p>
-                
-                <div class="modal-specs" id="modal-specs">
-                    <!-- Javascript sẽ tự động bơm 4 khung thông số kỹ thuật vào đây -->
-                </div>
-                
-                <p class="modal-desc" id="modal-desc">Mô tả sản phẩm...</p>
-                
-                <!-- Nút này được gắn class btn-buy để xài chung logic thêm giỏ hàng đã có -->
-                <button class="btn-buy modal-btn-add" id="modal-btn-add" data-name="" data-price="" data-img="">
-                    Thêm vào giỏ hàng
-                </button>
-            </div>
+      <button class="close-modal" id="close-modal" aria-label="Close">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-content">
+        <div class="modal-image-container">
+          <img src="" alt="Product" id="modal-img" />
         </div>
+        <div class="modal-info">
+          <h2 id="modal-title">Tên sản phẩm</h2>
+          <p class="modal-price" id="modal-price">Giá</p>
+
+          <div class="modal-specs" id="modal-specs">
+            <!-- Javascript sẽ tự động bơm 4 khung thông số kỹ thuật vào đây -->
+          </div>
+
+          <p class="modal-desc" id="modal-desc">Mô tả sản phẩm...</p>
+
+          <!-- Nút này được gắn class btn-buy để xài chung logic thêm giỏ hàng đã có -->
+          <button
+            class="btn-buy modal-btn-add"
+            id="modal-btn-add"
+            data-name=""
+            data-price=""
+            data-img=""
+          >
+            Thêm vào giỏ hàng
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- ================= GIAO DIỆN FORM THANH TOÁN (CHECKOUT MODAL) ================= -->
     <div class="modal-overlay" id="checkout-overlay"></div>
     <div class="checkout-modal" id="checkout-modal">
-        <button class="close-modal" id="close-checkout" aria-label="Close">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        <div class="checkout-content">
-            <h2>Thông tin giao hàng</h2>
-            <p class="checkout-subtitle">Vui lòng điền đầy đủ thông tin để nhận hàng</p>
-            
-            <form id="checkout-form">
-                <div class="form-group">
-                    <label>Họ và tên *</label>
-                    <input type="text" id="cus-name" required placeholder="Ví dụ: Nguyễn Văn A">
-                </div>
-                <div class="form-group">
-                    <label>Số điện thoại *</label>
-                    <input type="tel" id="cus-phone" required placeholder="Ví dụ: 0912345678">
-                </div>
-                <div class="form-group">
-                    <label>Địa chỉ nhận hàng *</label>
-                    <textarea id="cus-address" rows="3" required placeholder="Số nhà, Tên đường, Quận/Huyện, Tỉnh/Thành phố"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Phương thức thanh toán</label>
-                    <select id="cus-payment" class="checkout-select">
-                        <option value="cod">Thanh toán khi nhận hàng (COD)</option>
-                        <option value="transfer">Chuyển khoản ngân hàng</option>
-                    </select>
-                </div>
-                
-                <div class="checkout-summary">
-                    <span>Tổng thanh toán:</span>
-                    <span id="checkout-final-price" class="final-price">0₫</span>
-                </div>
-                
-                <button type="submit" class="btn-submit-order" id="btn-submit-order">Xác nhận đặt hàng</button>
-            </form>
-        </div>
+      <button class="close-modal" id="close-checkout" aria-label="Close">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="checkout-content">
+        <h2>Thông tin giao hàng</h2>
+        <p class="checkout-subtitle">
+          Vui lòng điền đầy đủ thông tin để nhận hàng
+        </p>
+
+        <form id="checkout-form">
+          <div class="form-group">
+            <label>Họ và tên *</label>
+            <input
+              type="text"
+              id="cus-name"
+              required
+              placeholder="Ví dụ: Nguyễn Văn A"
+            />
+          </div>
+          <div class="form-group">
+            <label>Số điện thoại *</label>
+            <input
+              type="tel"
+              id="cus-phone"
+              required
+              placeholder="Ví dụ: 0912345678"
+            />
+          </div>
+          <div class="form-group">
+            <label>Địa chỉ nhận hàng *</label>
+            <textarea
+              id="cus-address"
+              rows="3"
+              required
+              placeholder="Số nhà, Tên đường, Quận/Huyện, Tỉnh/Thành phố"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label>Phương thức thanh toán</label>
+            <select id="cus-payment" class="checkout-select">
+              <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+              <option value="transfer">Chuyển khoản ngân hàng</option>
+            </select>
+          </div>
+
+          <div class="checkout-summary">
+            <span>Tổng thanh toán:</span>
+            <span id="checkout-final-price" class="final-price">0₫</span>
+          </div>
+
+          <button type="submit" class="btn-submit-order" id="btn-submit-order">
+            Xác nhận đặt hàng
+          </button>
+        </form>
+      </div>
     </div>
 
     <!-- ================= KHUNG CHỨA THÔNG BÁO BẬT LÊN (TOAST) ================= -->
@@ -328,7 +793,16 @@
 
     <!-- ================= NÚT CUỘN LÊN ĐẦU TRANG ================= -->
     <button class="back-to-top" id="backToTop">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
     </button>
-</body>
+  </body>
 </html>

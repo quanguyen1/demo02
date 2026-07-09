@@ -1,20 +1,20 @@
 /* =========================================================================
-   MỤC LỤC CSS (TỔNG HỢP VÀ TỐI ƯU HÓA)
-   1. CÀI ĐẶT CHUNG (VARIABLES & RESET)
-   2. HIỆU ỨNG CHUYỂN ĐỘNG DÙNG CHUNG (GLOBAL ANIMATIONS)
-   3. KHU VỰC HEADER & MENU ICON (NAVIGATION)
-   4. HERO HOME SECTION (GIAO DIỆN MỞ ĐẦU)
-   5. SẢN PHẨM & THANH TRƯỢT (PRODUCT SLIDER & CARDS)
-   6. GIỎ HÀNG BÊN PHẢI (SHOPPING CART SIDEBAR)
-   7. CỬA SỔ BẬT LÊN (MODALS: QUICKVIEW, CHECKOUT, SEARCH)
-   8. KHU VỰC HỖ TRỢ & CHÂN TRANG (SUPPORT & FOOTER)
-   9. TIỆN ÍCH LƠ LỬNG (TOAST NOTIFICATION & BACK TO TOP)
-   10. CHẾ ĐỘ SÁNG (LIGHT THEME OVERRIDES)
-   11. TỐI ƯU THIẾT BỊ DI ĐỘNG (RESPONSIVE MEDIA QUERIES)
+MỤC LỤC CSS (TỔNG HỢP VÀ TỐI ƯU HÓA)
+1. CÀI ĐẶT CHUNG (VARIABLES & RESET)
+2. HIỆU ỨNG CHUYỂN ĐỘNG DÙNG CHUNG (GLOBAL ANIMATIONS)
+3. KHU VỰC HEADER & MENU ICON (NAVIGATION)
+4. HERO HOME SECTION (GIAO DIỆN MỞ ĐẦU)
+5. SẢN PHẨM & THANH TRƯỢT (PRODUCT SLIDER & CARDS)
+6. GIỎ HÀNG BÊN PHẢI (SHOPPING CART SIDEBAR)
+7. CỬA SỔ BẬT LÊN (MODALS: QUICKVIEW, CHECKOUT, SEARCH)
+8. KHU VỰC HỖ TRỢ & CHÂN TRANG (SUPPORT & FOOTER)
+9. TIỆN ÍCH LƠ LỬNG (TOAST NOTIFICATION & BACK TO TOP)
+10. CHẾ ĐỘ SÁNG (LIGHT THEME OVERRIDES)
+11. TỐI ƯU THIẾT BỊ DI ĐỘNG (RESPONSIVE MEDIA QUERIES)
 ========================================================================= */
 
 /* =========================================================================
-   1. CÀI ĐẶT CHUNG (VARIABLES & RESET)
+1. CÀI ĐẶT CHUNG (VARIABLES & RESET)
 ========================================================================= */
 :root {
     --bg-main: #37312d;
@@ -33,7 +33,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 body { background-color: var(--bg-main); color: var(--text-main); overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
 
 /* =========================================================================
-   2. HIỆU ỨNG CHUYỂN ĐỘNG DÙNG CHUNG (GLOBAL ANIMATIONS)
+2. HIỆU ỨNG CHUYỂN ĐỘNG DÙNG CHUNG (GLOBAL ANIMATIONS)
 ========================================================================= */
 .fade-in { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .fade-in.left { transform: translateX(-50px); }
@@ -45,7 +45,7 @@ body { background-color: var(--bg-main); color: var(--text-main); overflow-x: hi
 @keyframes fadeOutDown { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(30px) scale(0.9); } }
 
 /* =========================================================================
-   3. KHU VỰC HEADER & MENU ICON (NAVIGATION)
+3. KHU VỰC HEADER & MENU ICON (NAVIGATION)
 ========================================================================= */
 header { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; position: sticky; top: 0; z-index: 100; background-color: rgba(55, 49, 45, 0.4); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); transition: all 0.3s ease; }
 header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); }
@@ -65,7 +65,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .icon-btn:hover { background-color: var(--icon-hover); color: var(--bg-main); transform: scale(1.05); }
 
 /* =========================================================================
-   4. HERO HOME SECTION (GIAO DIỆN MỞ ĐẦU)
+4. HERO HOME SECTION (GIAO DIỆN MỞ ĐẦU)
 ========================================================================= */
 .hero-home-section { position: relative; width: 100%; min-height: 100vh; padding: 80px 50px 60px 50px; background-color: var(--bg-main); overflow: hidden; display: flex; align-items: center; }
 .hero-background-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: "Times New Roman", Times, serif; font-size: 25vw; font-weight: 400; z-index: 0; white-space: nowrap; pointer-events: none; will-change: transform; color: var(--text-main); opacity: 0.025; letter-spacing: 0.02em; filter: blur(1px); }
@@ -88,7 +88,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .feature-item p { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; }
 
 /* =========================================================================
-   5. SẢN PHẨM & THANH TRƯỢT (PRODUCT SLIDER & CARDS)
+5. SẢN PHẨM & THANH TRƯỢT (PRODUCT SLIDER & CARDS)
 ========================================================================= */
 .category-header { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; padding: 100px 60px 20px 60px; }
 .category-title { text-align: center; padding: 60px 20px 20px 20px; }
@@ -126,7 +126,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .btn-learn-more:hover, .btn-buy:hover { background-color: var(--btn-hover) !important; border-color: var(--text-muted); transform: translateY(-2px) scale(1.03); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
 
 /* =========================================================================
-   6. GIỎ HÀNG BÊN PHẢI (SHOPPING CART SIDEBAR)
+6. GIỎ HÀNG BÊN PHẢI (SHOPPING CART SIDEBAR)
 ========================================================================= */
 .cart-btn { position: relative; }
 .cart-badge { position: absolute; top: -5px; right: -5px; background-color: #ff3b30; color: white; font-size: 10px; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
@@ -161,7 +161,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .btn-checkout:hover { background-color: #d1cbc5; transform: translateY(-2px); }
 
 /* =========================================================================
-   7. CỬA SỔ BẬT LÊN (MODALS: QUICKVIEW, CHECKOUT, SEARCH OVERLAYS)
+7. CỬA SỔ BẬT LÊN (MODALS: QUICKVIEW, CHECKOUT, SEARCH OVERLAYS)
 ========================================================================= */
 .cart-overlay, .modal-overlay, .search-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
 .cart-overlay, .modal-overlay { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); }
@@ -215,7 +215,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .search-results::-webkit-scrollbar { display: none; }
 
 /* =========================================================================
-   8. KHU VỰC HỖ TRỢ & CHÂN TRANG (SUPPORT & FOOTER)
+8. KHU VỰC HỖ TRỢ & CHÂN TRANG (SUPPORT & FOOTER)
 ========================================================================= */
 .support-section { padding: 20px 60px 80px 60px; max-width: 1400px; margin: 0 auto; }
 .support-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
@@ -243,7 +243,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .social-icon:hover { color: var(--text-main); transform: translateY(-3px); }
 
 /* =========================================================================
-   9. TIỆN ÍCH LƠ LỬNG (TOAST NOTIFICATION & BACK TO TOP)
+9. TIỆN ÍCH LƠ LỬNG (TOAST NOTIFICATION & BACK TO TOP)
 ========================================================================= */
 .toast-container { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
 .toast { background: rgba(40, 40, 40, 0.85); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 12px 25px; border-radius: 30px; font-size: 14px; font-weight: 500; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 10px; animation: slideUpFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
@@ -255,7 +255,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .back-to-top:hover { transform: translateY(-5px) scale(1.05); }
 
 /* =========================================================================
-   10. CHẾ ĐỘ SÁNG (LIGHT THEME OVERRIDES)
+10. CHẾ ĐỘ SÁNG (LIGHT THEME OVERRIDES)
 ========================================================================= */
 [data-theme="light"] {
     --bg-main: #f5f5f7; 
@@ -287,7 +287,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 [data-theme="light"] .product { background: var(--pastel-bg) !important; border-color: rgba(0, 0, 0, 0.03); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); }
 
 /* =========================================================================
-   11. TỐI ƯU THIẾT BỊ DI ĐỘNG (RESPONSIVE MEDIA QUERIES)
+11. TỐI ƯU THIẾT BỊ DI ĐỘNG (RESPONSIVE MEDIA QUERIES)
 ========================================================================= */
 
 /* --- TABLET (Màn hình dưới 1150px) --- */

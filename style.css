@@ -49,8 +49,8 @@ body { background-color: var(--bg-main); color: var(--text-main); overflow-x: hi
 ========================================================================= */
 header { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; position: sticky; top: 0; z-index: 100; background-color: rgba(55, 49, 45, 0.4); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); transition: all 0.3s ease; }
 header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); }
-.logo { font-family: "Times New Roman", serif; font-size: 32px; font-style: italic; cursor: pointer; transition: transform 0.2s ease, opacity 0.2s ease; }
-.logo:hover { opacity: 0.8; transform: scale(1.02); }
+.logo { font-family: "Times New Roman", serif; font-size: 30px; font-style: italic; cursor: pointer; letter-spacing: 0px; transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.logo:hover { letter-spacing: 3px; opacity: 0.9; }
 
 .nav-icon-menu { display: flex; align-items: center; gap: 20px; }
 .nav-icon-menu a { color: var(--text-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; padding: 4px 6px; min-width: 65px; transition: color 0.2s ease, transform 0.2s ease; }
@@ -68,11 +68,11 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
    4. HERO HOME SECTION (GIAO DIỆN MỞ ĐẦU)
 ========================================================================= */
 .hero-home-section { position: relative; width: 100%; min-height: 100vh; padding: 80px 50px 60px 50px; background-color: var(--bg-main); overflow: hidden; display: flex; align-items: center; }
-.hero-background-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: "Times New Roman", Times, serif; font-size: 25vw; color: rgba(255, 255, 255, 0.03); font-weight: 400; z-index: 0; white-space: nowrap; pointer-events: none; will-change: transform; }
+.hero-background-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: "Times New Roman", Times, serif; font-size: 25vw; font-weight: 400; z-index: 0; white-space: nowrap; pointer-events: none; will-change: transform; color: var(--text-main); opacity: 0.025; letter-spacing: 0.02em; filter: blur(1px); }
 
 .hero-air-container { position: relative; z-index: 2; display: flex; width: 100%; max-width: 1250px; margin: 0 auto; gap: 80px; align-items: center; justify-content: space-between; }
 .hero-air-image { flex: 1; display: flex; justify-content: center; }
-.hero-air-image img { width: 100%; max-width: 500px; height: auto; object-fit: contain; transition: opacity 0.4s ease; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); }
+.hero-air-image img { width: 100%; max-width: 880px; height: auto; object-fit: contain; transition: opacity 0.4s ease; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); }
 
 .hero-air-text { flex: 1; max-width: 520px; display: flex; flex-direction: column; justify-content: center; }
 .hero-air-text .big-title { font-size: 40px; font-weight: 500; letter-spacing: 0.5px; line-height: 1.25; margin-top: 0; margin-bottom: 12px; color: var(--text-main); }
@@ -118,7 +118,10 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .product .price { font-size: 16px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; }
 .product h3 { font-size: 20px; font-weight: 500; margin-bottom: 20px; }
 
+/* Gộp Nút bấm & Thẻ liên kết Sản phẩm dùng chung */
 .product-actions { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 15px; }
+.link-learn-more { color: var(--text-main); text-decoration: none; font-size: 14px; transition: all 0.3s ease; }
+.link-learn-more:hover { text-decoration: underline; opacity: 0.8; }
 .btn-learn-more, .btn-buy { background-color: var(--btn-bg) !important; border: 1px solid var(--border-color); color: var(--text-main) !important; text-decoration: none; padding: 8px 26px; border-radius: 30px; font-size: 14px; font-weight: 500; box-shadow: none; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 .btn-learn-more:hover, .btn-buy:hover { background-color: var(--btn-hover) !important; border-color: var(--text-muted); transform: translateY(-2px) scale(1.03); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
 
@@ -196,6 +199,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 .form-group label { display: block; font-size: 13px; margin-bottom: 8px; color: var(--text-muted); }
 .form-group input, .form-group textarea, .form-group select { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); color: var(--text-main); padding: 12px 15px; border-radius: 10px; font-size: 14px; outline: none; transition: border-color 0.3s ease; }
 .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--text-main); }
+.form-group select option { background-color: var(--bg-main); color: var(--text-main); }
 .checkout-summary { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-top: 1px solid var(--border-color); margin-top: 10px; margin-bottom: 20px; }
 .final-price { font-size: 22px; font-weight: bold; color: var(--text-main); }
 .btn-submit-order { width: 100%; padding: 15px; background-color: var(--text-main); color: var(--bg-main); border: none; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
@@ -279,6 +283,8 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
 [data-theme="light"] .hero-background-text { color: rgba(0, 0, 0, 0.03); }
 [data-theme="light"] .hero-air-text .hero-desc { color: #555; }
 [data-theme="light"] .hero-features { border-top-color: rgba(0,0,0,0.1); }
+/* Chế độ sáng cho thẻ sản phẩm Gradient (Lấy từ biến --pastel-bg do JS cấp) */
+[data-theme="light"] .product { background: var(--pastel-bg) !important; border-color: rgba(0, 0, 0, 0.03); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); }
 
 /* =========================================================================
    11. TỐI ƯU THIẾT BỊ DI ĐỘNG (RESPONSIVE MEDIA QUERIES)
@@ -328,7 +334,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
     .products-section { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .product { padding: 15px 10px; }
     .product-image { height: 140px; margin-bottom: 15px; }
-    .product h3 { font-size: 15px; margin-bottom: 10px; }
+    .product h3 { font-size: 13.5px; margin-bottom: 10px; }
     .product .price { font-size: 12px; }
     .product-actions { flex-direction: column; gap: 8px; }
     .btn-learn-more, .btn-buy { width: 100%; padding: 8px 0; font-size: 12px; }

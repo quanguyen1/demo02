@@ -126,9 +126,20 @@ document.addEventListener("DOMContentLoaded", function() {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = ''; 
+
         data.forEach((product, index) => {
+            // Tính toán màu nền pastel chuẩn bị sẵn (nhưng CHƯA ép vào background)
+            let pastelBg = 'var(--btn-bg)'; 
+            const imgPath = product.img.toLowerCase();
+            if (imgPath.includes('cam') || imgPath.includes('ultra')) pastelBg = 'linear-gradient(180deg, #fcebde 0%, #f7d2b7 100%)'; 
+            else if (imgPath.includes('xanh-la') || imgPath.includes('green')) pastelBg = 'linear-gradient(180deg, #eaf2eb 0%, #cbe0cc 100%)'; 
+            else if (imgPath.includes('air') || imgPath.includes('blue') || imgPath.includes('xanh-5g')) pastelBg = 'linear-gradient(180deg, #e6f0f5 0%, #cae0eb 100%)'; 
+            else if (imgPath.includes('hong') || imgPath.includes('tim')) pastelBg = 'linear-gradient(180deg, #fbebf1 0%, #f5cedd 100%)'; 
+            else pastelBg = 'linear-gradient(180deg, #f5f5f7 0%, #e3e3e8 100%)';
+
+            // Gắn màu pastel vào một BIẾN CSS ẢO (--pastel-bg) cho từng thẻ
             const productHTML = `
-                <div class="product fade-in" style="transition-delay: ${index * 50}ms;">
+                <div class="product fade-in" style="transition-delay: ${index * 50}ms; --pastel-bg: ${pastelBg};">
                     <img src="${product.img}" alt="${product.name}" class="product-image" loading="lazy">
                     <p class="price">${product.price}</p>
                     <h3>${product.name}</h3>
@@ -170,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (sortType !== 'default') {
                     cat.data.sort((a, b) => sortType === 'asc' ? parsePrice(a.price) - parsePrice(b.price) : parsePrice(b.price) - parsePrice(a.price));
                 }
-                renderProducts(cat.data, cat.id);
+                renderProducts(cat.data, cat.id); // Hàm render sẽ tự động tính toán lại màu nền mới
             });
             setTimeout(() => observeElements(), 50);
         });

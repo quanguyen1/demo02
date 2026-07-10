@@ -419,7 +419,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 heroImg.style.opacity = 0;
                 setTimeout(() => { heroImg.src = this.getAttribute('data-img'); heroImg.style.opacity = 1; }, 300);
                 const heroBuyBtn = document.querySelector('.hero-cta .btn-buy');
-                if (heroBuyBtn) heroBuyBtn.setAttribute('data-img', selectedImg);
+                if (heroBuyBtn) heroBuyBtn.setAttribute('data-img', this.getAttribute('data-img'));
             });
         });
     }

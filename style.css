@@ -344,6 +344,7 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
     .support-section { padding: 20px; }
     .support-grid { gap: 20px; }
 }
+.btn-view-more { display: none; }
 
 /* --- MOBILE (Màn hình dưới 768px) --- */
 @media (max-width: 768px) {
@@ -391,5 +392,3 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
     [data-theme="light"] .btn-view-more { background: rgba(0, 0, 0, 0.03); }
     .btn-view-more:hover { background: var(--btn-hover); border-color: var(--text-muted); transform: scale(1.02); }
 }
-
-.btn-view-more { display: none; }

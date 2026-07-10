@@ -385,10 +385,11 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
     .support-card { padding: 30px 20px; }
 
     /*Nút xem tất cả trên giao diện mobie*/
-    .btn-view-more {display: none;}
-@media (max-width: 768px) {
+    .support-card { padding: 30px 20px; }
     .products-section:not(.expanded) .product:nth-child(n+5) { display: none !important; }
     .btn-view-more { display: block; margin: 20px auto 10px auto; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: var(--text-main); padding: 10px 35px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     [data-theme="light"] .btn-view-more { background: rgba(0, 0, 0, 0.03); }
-    .btn-view-more:hover { background: var(--btn-hover); border-color: var(--text-muted); transform: scale(1.02); }}
+    .btn-view-more:hover { background: var(--btn-hover); border-color: var(--text-muted); transform: scale(1.02); }
 }
+
+.btn-view-more { display: none; }

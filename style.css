@@ -33,6 +33,30 @@ html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 body { background-color: var(--bg-main); color: var(--text-main); overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
 
 /* =========================================================================
+HIỆU ỨNG CHUYỂN ĐỔI CHẾ ĐỘ SÁNG / TỐI APPLE-LIKE
+========================================================================= */
+body, .product, header, .cart-sidebar, .quickview-modal, 
+.checkout-modal, .support-card, .search-overlay, .site-footer, 
+.btn-buy, .btn-learn-more, .sort-dropdown, input, textarea, select {
+    transition-property: background-color, color, border-color, box-shadow;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Đảm bảo các icon SVG cũng đổi màu mượt mà */
+svg {
+    transition: color 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                stroke 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                fill 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Khôi phục hiệu ứng nhún (hover) cho thẻ sản phẩm để không bị đè bởi transition trên */
+.product:hover {
+    transform: translateY(-8px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+/* =========================================================================
 2. HIỆU ỨNG CHUYỂN ĐỘNG DÙNG CHUNG (GLOBAL ANIMATIONS)
 ========================================================================= */
 .fade-in { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
@@ -306,10 +330,10 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
     .hero-air-text .color-swatches, .hero-cta { justify-content: center; }
     .hero-features { align-items: center; text-align: center; }
 
-    .products-wrapper { padding: 0 20px; }
-    .products-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; overflow-x: visible; padding: 20px 0 40px 0; }
+    .products-wrapper { padding: 0 10px; }
+    .products-section { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 10px 40px 10px; gap: 15px; -webkit-overflow-scrolling: touch; }
     .products-section::-webkit-scrollbar { display: none; }
-    .product { flex: unset; width: 100%; scroll-snap-align: unset; }
+    .product { flex: 0 0 260px; scroll-snap-align: center; }
     .slider-navigation { display: none; }
 
     .quickview-modal, .checkout-modal { flex-direction: column; height: 90vh; overflow-y: auto; }
@@ -331,8 +355,12 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
     .hero-cta { flex-direction: column; width: 100%; gap: 12px; }
     .hero-cta .btn-buy, .hero-cta .btn-learn-more { width: 100%; text-align: center; }
     
-    .products-section { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .product { padding: 15px 10px; }
+    /* .products-section { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .product { padding: 15px 10px; } */
+    /* dạng trượt thay thế dạng gird */
+    .products-section { gap: 12px; padding: 10px 10px 30px 10px; }
+    .product { flex: 0 0 220px; padding: 15px 12px; }
+    
     .product-image { height: 140px; margin-bottom: 15px; }
     .product h3 { font-size: 13.5px; margin-bottom: 10px; }
     .product .price { font-size: 12px; }

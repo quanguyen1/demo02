@@ -436,6 +436,10 @@ document.addEventListener("DOMContentLoaded", function() {
     updateCartUI();
     observeElements();
 
-    if (history.scrollRestoration) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    }
+    setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 50);
 });

@@ -355,11 +355,9 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
     .hero-cta { flex-direction: column; width: 100%; gap: 12px; }
     .hero-cta .btn-buy, .hero-cta .btn-learn-more { width: 100%; text-align: center; }
     
-    .products-section { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .product { padding: 15px 10px; }
-    /* dạng trượt thay thế dạng gird */
-    /* .products-section { gap: 12px; padding: 10px 10px 30px 10px; }
-    .product { flex: 0 0 220px; padding: 15px 12px; } */
+    /* --- ÉP TRỞ LẠI DẠNG GRID 2 CỘT CHO MOBILE --- */
+    .products-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 10px 10px 30px 10px; overflow-x: visible; }
+    .product { flex: unset; width: 100%; padding: 15px 10px; scroll-snap-align: unset; }
 
     .product-image { height: 140px; margin-bottom: 15px; }
     .product h3 { font-size: 13.5px; margin-bottom: 10px; }
@@ -385,4 +383,12 @@ header.scrolled { background-color: rgba(55, 49, 45, 0.5); box-shadow: 0 4px 30p
     
     .support-grid { grid-template-columns: 1fr; }
     .support-card { padding: 30px 20px; }
+
+    /*Nút xem tất cả trên giao diện mobie*/
+    .btn-view-more {display: none;}
+@media (max-width: 768px) {
+    .products-section:not(.expanded) .product:nth-child(n+5) { display: none !important; }
+    .btn-view-more { display: block; margin: 20px auto 10px auto; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: var(--text-main); padding: 10px 35px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    [data-theme="light"] .btn-view-more { background: rgba(0, 0, 0, 0.03); }
+    .btn-view-more:hover { background: var(--btn-hover); border-color: var(--text-muted); transform: scale(1.02); }}
 }

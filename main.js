@@ -187,6 +187,40 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Xử lý nút xem tất cả thu gọn trên màn hình nhỏ hơn hoặc bằng 768px
+    function initMobileViewMore() {
+        if (window.innerWidth > 768) return;
+
+        document.querySelectorAll('.products-wrapper').forEach(wrapper => {
+            const productSection = wrapper.querySelector('.products-section');
+            if (!productSection) return;
+
+            const totalProducts = productSection.querySelectorAll('.product').length;
+
+            if (totalProducts > 4) {
+                const viewMoreBtn = document.createElement('button');
+                viewMoreBtn.className = 'btn-view-more';
+                viewMoreBtn.textContent = 'Xem tất cả';
+
+                viewMoreBtn.addEventListener('click', function() {
+                    if (productSection.classList.contains('expanded')) {
+                        productSection.classList.remove('expanded');
+                        this.textContent = 'Xem tất cả';
+                        wrapper.previousElementSibling.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    } else {
+                        productSection.classList.add('expanded');
+                        this.textContent = 'Thu gọn';
+                    }
+                });
+                wrapper.appendChild(viewMoreBtn);
+            }
+        });
+    }
+    setTimeout(initMobileViewMore, 100);
+
     // =========================================================================
     // KHU VỰC 5: HỆ THỐNG GIAO DIỆN NỔI (MODALS, OVERLAYS & SEARCH)
     // =========================================================================
